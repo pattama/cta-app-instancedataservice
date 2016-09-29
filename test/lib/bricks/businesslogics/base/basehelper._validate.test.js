@@ -10,7 +10,7 @@ const nodepath = require('path');
 const Logger = require('cta-logger');
 const Context = require('cta-flowcontrol').Context;
 const Helper = require(nodepath.join(appRootPath,
-  '/lib/bricks/businesslogics/base/', 'basehelper.js'));
+  'node_modules/cta-app-instancedataservice/lib/bricks/businesslogics/base/', 'basehelper.js'));
 
 const DEFAULTCONFIG = require('./index.config.testdata.js');
 const DEFAULTLOGGER = new Logger(null, null, DEFAULTCONFIG.name);
