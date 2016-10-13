@@ -1,5 +1,5 @@
 {
-  "name": "cta-app-instance-dataservice",
+  "name": "cta-app-instancedataservice",
   "version": "1.0.0",
   "description": "Instance data service for CTA project",
   "author": "CTA Team <cta@thomsonreuters.com>",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.sami.int.thomsonreuters.com:compass/cta-tool-boilerplate.git"
+    "url": "git@git.sami.int.thomsonreuters.com:compass/cta-app-instancedataservice.git"
   },
   "engines": {
     "node": "4.2.2"
@@ -33,7 +33,6 @@
     "require-subvert": "^0.1.0",
     "mocha-istanbul": "^0.3.0",
     "mongodb": "^2.2.5",
-    "opener": "^1.4.1",
     "pow-mongodb-fixtures": "^0.13.0",
     "should": "^10.0.0"
   },
