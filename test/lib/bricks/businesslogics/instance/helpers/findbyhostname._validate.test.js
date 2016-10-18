@@ -11,7 +11,7 @@ const _ = require('lodash');
 const Logger = require('cta-logger');
 const Context = require('cta-flowcontrol').Context;
 const Helper = require(nodepath.join(appRootPath,
-  'node_modules/cta-app-instancedataservice/lib/bricks/businesslogics/instance/helpers', 'findbyhostname.js'));
+  'node_modules/cta-app-instancedataservice/lib/bricks/businesslogics/instance/helpers', 'findbyproperties.js'));
 
 const DEFAULTCONFIG = require('../index.config.testdata.js');
 const DEFAULTLOGGER = new Logger(null, null, DEFAULTCONFIG.name);
@@ -25,9 +25,9 @@ const DEFAULTCEMENTHELPER = {
   },
   createContext: function() {},
 };
-const SAMPLE = require('./create.sample.testdata.js');
+const SAMPLE = require('./findbyproperties.sample.testdata.js');
 
-describe('BusinessLogics - Schedule - Create - _validate', function() {
+describe('BusinessLogics - Instance - Find Matching Instance - _validate', function() {
   let helper;
   const DEFAULTINPUTJOB = {
     nature: {

@@ -37,6 +37,10 @@
     "pow-mongodb-fixtures": "^0.13.0",
     "should": "^10.0.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "request": "^2.74.0",
+    "bson": "^0.5.2",
+    "lodash": "^4.14.1"
+  },
   "license": "Apache-2.0"
 }
