@@ -7,5 +7,3 @@
 
 # How to develop
 - check code coverage by run `node_modules\.bin\istanbul cover .\node_modules\mocha\bin\_mocha -- -u exports -R spec`
-- 
-# Features
