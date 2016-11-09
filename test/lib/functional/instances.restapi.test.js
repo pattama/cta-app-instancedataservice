@@ -11,32 +11,28 @@ describe('instances restapi', function() {
     ip: '12.34.56.78',
   };
   it('create instance', (done) => {
-    o.superagent.post(url)
-      .send(doc)
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) {
-          done(err);
-        } else {
-          o.assert(res.body.id);
-          doc.id = res.body.id;
-          o.assert.strictEqual(res.body.hostname, doc.hostname);
-          o.assert.strictEqual(res.body.ip, doc.ip);
-          done();
-        }
+    o.request.post(url, doc)
+      .then((res) => {
+        o.assert(res.data.id);
+        doc.id = res.data.id;
+        o.assert.strictEqual(res.data.hostname, doc.hostname);
+        o.assert.strictEqual(res.data.ip, doc.ip);
+        done();
+      })
+      .catch((err) => {
+        done(err);
       });
   });
-  it('get instance', (done) => {
-    o.superagent.get(url + '?id=' + doc.id)
-      .end((err, res) => {
-        if (err) {
-          done(err);
-        } else {
-          o.assert.strictEqual(res.body[0].id, doc.id);
-          o.assert.strictEqual(res.body[0].hostname, doc.hostname);
-          o.assert.strictEqual(res.body[0].ip, doc.ip);
-          done();
-        }
+  it('get instance by id', (done) => {
+    o.request.get(url + '?id=' + doc.id)
+      .then((res) => {
+        o.assert.strictEqual(res.data[0].id, doc.id);
+        o.assert.strictEqual(res.data[0].hostname, doc.hostname);
+        o.assert.strictEqual(res.data[0].ip, doc.ip);
+        done();
+      })
+      .catch((err) => {
+        done(err);
       });
   });
 });
