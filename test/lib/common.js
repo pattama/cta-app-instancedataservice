@@ -11,4 +11,7 @@ module.exports = {
   exec: require('child_process').exec,
   path: require('path'),
   os: require('os'),
+  co: require('co'),
+  coForEach: require('co-foreach'),
+  mongoClient: require('mongodb').MongoClient,
 };
