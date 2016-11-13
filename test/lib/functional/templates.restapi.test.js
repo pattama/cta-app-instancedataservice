@@ -4,7 +4,7 @@ const o = require('../common');
 
 const url = 'http://localhost:3000/templates';
 
-describe('templates restapi', function() {
+describe.skip('templates restapi', function() {
 
   const doc = {
     name: 'main',

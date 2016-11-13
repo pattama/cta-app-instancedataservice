@@ -6,9 +6,26 @@ const url = 'http://localhost:3000/instances';
 const docs = [{
   hostname: 'foo.com',
   ip: '12.34.56.78',
+  properties: [{
+    key: 'os',
+    value: 'windows 7 64bits',
+  }, {
+    key: 'office',
+    value: 'office 2013',
+  }],
 }, {
   hostname: 'bar.com',
   ip: '91.23.45.67',
+  properties: [{
+    key: 'os',
+    value: 'windows 8 32bits',
+  }, {
+    key: 'env',
+    value: 'alpha',
+  }, {
+    key: 'env',
+    value: 'beta',
+  }],
 }];
 
 describe('instances restapi', function() {
@@ -68,5 +85,26 @@ describe('instances restapi', function() {
       .catch((err) => {
         done(err);
       });
+  });
+
+  it('get instance by properties', function(done) {
+    const params = {
+      properties: [{
+        key: 'env',
+        value: 'alpha',
+      }],
+    };
+    o.request.post(url + '/search', params)
+    .then((res) => {
+      console.log(res);
+      o.assert.strictEqual(res.data.length, 1);
+      o.assert.strictEqual(res.data[0].id, docs[1].id);
+      o.assert.strictEqual(res.data[0].hostname, docs[1].hostname);
+      o.assert.strictEqual(res.data[0].ip, docs[1].ip);
+      done();
+    })
+    .catch((err) => {
+      done(err);
+    });
   });
 });
