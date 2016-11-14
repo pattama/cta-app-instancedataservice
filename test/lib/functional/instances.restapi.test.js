@@ -31,8 +31,35 @@ const docs = [{
 function sort(a, b) {
   return a.hostname > b.hostname ? 1 : -1;
 }
-
+function contain(source, data) {
+  if (!Array.isArray(data)) {
+    return false;
+  }
+  if (data.length === 0) {
+    return false;
+  }
+  for (let i = 0; i < source.length; i++) {
+    const doc = source[i];
+    const arr = data.filter((e) => {
+      return e.hostname === doc.hostname;
+    });
+    if (arr.length !== 1) {
+      return false;
+    }
+  }
+  return true;
+}
 describe('instances restapi', function() {
+
+  it('mandatory fields', function(done) {
+    o.co(function * (){
+      const resp = yield o.request.post(url, {hostname: 'foo'});
+      done('should raise an error');
+    })
+    .catch((err) => {
+      done();
+    });
+  });
 
   it('create instances', function(done) {
     o.coForEach(docs, function * (doc) {
@@ -54,7 +81,7 @@ describe('instances restapi', function() {
     o.request.get(url)
       .then((res) => {
         o.assert.strictEqual(res.data.length, docs.length);
-        o.assert.deepEqual(o.lodash.cloneDeep(docs).sort(sort), res.data.sort(sort));
+        o.assert.isOk(contain(docs, res.data));
         done();
       })
       .catch((err) => {
@@ -97,23 +124,25 @@ describe('instances restapi', function() {
 
       resp = yield o.request.get(url + '?properties.env=beta');
       o.assert.strictEqual(resp.data.length, 1);
-      o.assert.deepEqual(resp.data[0], docs[1]);
+      o.assert.strictEqual(resp.data[0].hostname, docs[1].hostname);
 
       resp = yield o.request.post(url + '/search', {
         'properties.env': 'beta',
       });
       o.assert.strictEqual(resp.data.length, 1);
-      o.assert.deepEqual(resp.data[0], docs[1]);
+      o.assert.strictEqual(resp.data[0].hostname, docs[1].hostname);
+
+      const sliced = o.lodash.cloneDeep(docs).slice(1, 3);
 
       resp = yield o.request.get(url + '?properties.env=beta,prod');
       o.assert.strictEqual(resp.data.length, 2);
-      o.assert.deepEqual(resp.data.sort(sort), o.lodash.cloneDeep(docs).slice(1, 3).sort(sort));
+      o.assert.isOk(contain(sliced, resp.data));
 
       resp = yield o.request.post(url + '/search', {
         'properties.env': 'beta,prod',
       });
       o.assert.strictEqual(resp.data.length, 2);
-      o.assert.deepEqual(resp.data.sort(sort), o.lodash.cloneDeep(docs).slice(1, 3).sort(sort));
+      o.assert.isOk(contain(sliced, resp.data));
 
       done();
     })
@@ -136,7 +165,7 @@ describe('instances restapi', function() {
   it('sort results', function(done) {
     o.co(function * (){
       const resp = yield o.request.get(url + '?sort=hostname');
-      o.assert.deepEqual(resp.data, o.lodash.cloneDeep(docs).sort(sort));
+      o.assert.isOk(contain(docs, resp.data));
       done();
     })
     .catch((err) => {
