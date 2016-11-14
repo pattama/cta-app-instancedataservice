@@ -6,6 +6,7 @@ let child;
 before(function(done) {
   this.timeout(5000);
   // TODO provide mongodb cta-oss dev server
+  const logFile = o.path.resolve(o.os.tmpDir(), 'cta-app-instancedataservice-main.log');
   o.mongoClient.connect('mongodb://localhost:27017/oss', function(err, db) {
     if (err) {
       done(err);
@@ -19,9 +20,9 @@ before(function(done) {
           child = new(o.forever.Monitor)(file, {
             max: 0,
             silent: true,
-            logFile: o.path.resolve(o.os.tmpDir(), 'cta-app-instancedataservice-main.log'),
-            outFile: o.path.resolve(o.os.tmpDir(), 'cta-app-instancedataservice-out.log'),
-            errFile: o.path.resolve(o.os.tmpDir(), 'cta-app-instancedataservice-err.log'),
+            logFile: logFile,
+            outFile: logFile,
+            errFile: logFile,
           });
           child.on('start', function() {
             console.log(`*** forever started\nSee log files in:\n${child.logFile}\n${child.outFile}\n${child.errFile}`);

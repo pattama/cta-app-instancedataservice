@@ -4,29 +4,33 @@ const o = require('../common');
 
 const url = 'http://localhost:3000/instances';
 const docs = [{
-  hostname: 'foo.com',
-  ip: '12.34.56.78',
-  properties: [{
-    key: 'os',
-    value: 'windows 7 64bits',
-  }, {
-    key: 'office',
-    value: 'office 2013',
-  }],
+  hostname: 'one',
+  ip: '11.11.11.11',
+  properties: {
+    os: 'windows 7',
+    office: 'office 2013',
+    env: 'alpha',
+  },
 }, {
-  hostname: 'bar.com',
-  ip: '91.23.45.67',
-  properties: [{
-    key: 'os',
-    value: 'windows 8 32bits',
-  }, {
-    key: 'env',
-    value: 'alpha',
-  }, {
-    key: 'env',
-    value: 'beta',
-  }],
+  hostname: 'two',
+  ip: '22.22.22.22',
+  properties: {
+    os: 'windows 8',
+    office: 'office 2013',
+    env: ['alpha', 'beta'],
+  },
+}, {
+  hostname: 'three',
+  ip: '33.33.33.33',
+  properties: {
+    os: 'windows 10',
+    office: 'office 2016',
+    env: 'prod',
+  },
 }];
+function sort(a, b) {
+  return a.hostname > b.hostname ? 1 : -1;
+}
 
 describe('instances restapi', function() {
 
@@ -49,8 +53,8 @@ describe('instances restapi', function() {
   it('get all instances', function(done) {
     o.request.get(url)
       .then((res) => {
-        o.assert.strictEqual(res.data.length, 2);
-        o.assert.deepEqual(docs, res.data);
+        o.assert.strictEqual(res.data.length, docs.length);
+        o.assert.deepEqual(o.lodash.cloneDeep(docs).sort(sort), res.data.sort(sort));
         done();
       })
       .catch((err) => {
@@ -73,7 +77,7 @@ describe('instances restapi', function() {
   });
 
   it('get instance by hostname', function(done) {
-    o.request.get(url + '?hostname=bar.com')
+    o.request.get(url + '?hostname=' + docs[1].hostname)
       .then((res) => {
         console.log(res);
         o.assert.strictEqual(res.data.length, 1);
@@ -88,19 +92,29 @@ describe('instances restapi', function() {
   });
 
   it('get instance by properties', function(done) {
-    const params = {
-      properties: [{
-        key: 'env',
-        value: 'alpha',
-      }],
-    };
-    o.request.post(url + '/search', params)
-    .then((res) => {
-      console.log(res);
-      o.assert.strictEqual(res.data.length, 1);
-      o.assert.strictEqual(res.data[0].id, docs[1].id);
-      o.assert.strictEqual(res.data[0].hostname, docs[1].hostname);
-      o.assert.strictEqual(res.data[0].ip, docs[1].ip);
+    o.co(function * (){
+      let resp;
+
+      resp = yield o.request.get(url + '?properties.env=beta');
+      o.assert.strictEqual(resp.data.length, 1);
+      o.assert.deepEqual(resp.data[0], docs[1]);
+
+      resp = yield o.request.post(url + '/search', {
+        'properties.env': 'beta',
+      });
+      o.assert.strictEqual(resp.data.length, 1);
+      o.assert.deepEqual(resp.data[0], docs[1]);
+
+      resp = yield o.request.get(url + '?properties.env=beta,prod');
+      o.assert.strictEqual(resp.data.length, 2);
+      o.assert.deepEqual(resp.data.sort(sort), o.lodash.cloneDeep(docs).slice(1, 3).sort(sort));
+
+      resp = yield o.request.post(url + '/search', {
+        'properties.env': 'beta,prod',
+      });
+      o.assert.strictEqual(resp.data.length, 2);
+      o.assert.deepEqual(resp.data.sort(sort), o.lodash.cloneDeep(docs).slice(1, 3).sort(sort));
+
       done();
     })
     .catch((err) => {

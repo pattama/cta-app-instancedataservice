@@ -14,4 +14,5 @@ module.exports = {
   co: require('co'),
   coForEach: require('co-foreach'),
   mongoClient: require('mongodb').MongoClient,
+  lodash: require('lodash'),
 };
