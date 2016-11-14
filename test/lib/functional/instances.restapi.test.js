@@ -121,4 +121,26 @@ describe('instances restapi', function() {
       done(err);
     });
   });
+
+  it('limit results', function(done) {
+    o.co(function * (){
+      const resp = yield o.request.get(url + '?limit=2');
+      o.assert.strictEqual(resp.data.length, 2);
+      done();
+    })
+    .catch((err) => {
+      done(err);
+    });
+  });
+
+  it('sort results', function(done) {
+    o.co(function * (){
+      const resp = yield o.request.get(url + '?sort=hostname');
+      o.assert.deepEqual(resp.data, o.lodash.cloneDeep(docs).sort(sort));
+      done();
+    })
+    .catch((err) => {
+      done(err);
+    });
+  });
 });
