@@ -64,6 +64,7 @@ describe('Instances REST API', function() {
   it('create', function(done) {
     o.coForEach(docs, function * (doc) {
       const res = yield o.request.post(url, doc);
+      console.log(res.data);
       o.assert(res.data.result.id);
       doc.id = res.data.result.id;
       o.assert.strictEqual(res.data.result.hostname, doc.hostname);
