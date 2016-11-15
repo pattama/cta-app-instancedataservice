@@ -49,10 +49,10 @@ function contain(source, data) {
   }
   return true;
 }
-describe.skip('instances restapi', function() {
+describe('Instances REST API', function() {
 
   it('mandatory fields', function(done) {
-    o.co(function * (){
+    o.co(function * () {
       const resp = yield o.request.post(url, {hostname: 'foo'});
       done('should raise an error');
     })
@@ -61,7 +61,7 @@ describe.skip('instances restapi', function() {
     });
   });
 
-  it('create instances', function(done) {
+  it('create', function(done) {
     o.coForEach(docs, function * (doc) {
       const res = yield o.request.post(url, doc);
       o.assert(res.data.id);
@@ -77,7 +77,7 @@ describe.skip('instances restapi', function() {
     });
   });
 
-  it('get all instances', function(done) {
+  it('get all', function(done) {
     o.request.get(url)
       .then((res) => {
         o.assert.strictEqual(res.data.length, docs.length);
@@ -89,7 +89,7 @@ describe.skip('instances restapi', function() {
       });
   });
 
-  it('get instance by id', function(done) {
+  it('get by id', function(done) {
     o.request.get(url + '?id=' + docs[0].id)
       .then((res) => {
         o.assert.strictEqual(res.data.length, 1);
@@ -103,7 +103,7 @@ describe.skip('instances restapi', function() {
       });
   });
 
-  it('get instance by hostname', function(done) {
+  it('get by hostname', function(done) {
     o.request.get(url + '?hostname=' + docs[1].hostname)
       .then((res) => {
         console.log(res);
@@ -118,8 +118,8 @@ describe.skip('instances restapi', function() {
       });
   });
 
-  it('get instance by properties', function(done) {
-    o.co(function * (){
+  it('get by properties', function(done) {
+    o.co(function * () {
       let resp;
 
       resp = yield o.request.get(url + '?properties.env=beta');
@@ -152,7 +152,7 @@ describe.skip('instances restapi', function() {
   });
 
   it('limit results', function(done) {
-    o.co(function * (){
+    o.co(function * () {
       const resp = yield o.request.get(url + '?limit=2');
       o.assert.strictEqual(resp.data.length, 2);
       done();
@@ -163,9 +163,28 @@ describe.skip('instances restapi', function() {
   });
 
   it('sort results', function(done) {
-    o.co(function * (){
+    o.co(function * () {
       const resp = yield o.request.get(url + '?sort=hostname');
-      o.assert.isOk(contain(docs, resp.data));
+      const source = docs.map((e) => { return e.hostname }).sort();
+      const data = resp.data.map((e) => { return e.hostname });
+      o.assert.deepEqual(source, data);
+      done();
+    })
+    .catch((err) => {
+      done(err);
+    });
+  });
+
+  it('update', function(done) {
+    o.co(function * () {
+      const resp = yield o.request.exec({
+        method: 'patch',
+        url: url + '/' + docs[0].id,
+        body: {
+          ip: '00.00.00.00',
+        },
+      });
+      o.assert.strictEqual(resp.data.ip, '00.00.00.00');
       done();
     })
     .catch((err) => {

@@ -61,7 +61,7 @@ function contain(source, data) {
   }
   return true;
 }
-describe('templates restapi', function() {
+describe('Templates REST API', function() {
 
   it('mandatory fields', function(done) {
     o.co(function * (){
@@ -128,7 +128,7 @@ describe('templates restapi', function() {
   });
 
   it('get by properties', function(done) {
-    o.co(function * (){
+    o.co(function * () {
       let resp;
 
       resp = yield o.request.get(url + '?properties.env=beta');
@@ -161,7 +161,7 @@ describe('templates restapi', function() {
   });
 
   it('limit results', function(done) {
-    o.co(function * (){
+    o.co(function * () {
       const resp = yield o.request.get(url + '?limit=2');
       o.assert.strictEqual(resp.data.length, 2);
       done();
@@ -172,9 +172,28 @@ describe('templates restapi', function() {
   });
 
   it('sort results', function(done) {
-    o.co(function * (){
+    o.co(function * () {
       const resp = yield o.request.get(url + '?sort=name');
-      o.assert.isOk(contain(docs, resp.data));
+      const source = docs.map((e) => { return e.name }).sort();
+      const data = resp.data.map((e) => { return e.name });
+      o.assert.deepEqual(source, data);
+      done();
+    })
+    .catch((err) => {
+      done(err);
+    });
+  });
+
+  it('update', function(done) {
+    o.co(function * () {
+      const resp = yield o.request.exec({
+        method: 'patch',
+        url: url + '/' + docs[0].id,
+        body: {
+          name: 'one.one',
+        },
+      });
+      o.assert.strictEqual(resp.data.name, 'one.one');
       done();
     })
     .catch((err) => {
