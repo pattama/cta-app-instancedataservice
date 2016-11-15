@@ -4,16 +4,16 @@ Rest API
 # Summary
 
 1. Instances
-..* [Create a new Instance](#create-a-new-instance)
-..* [Find Instances](#find-instances)
-..* [Update an Instance](#update-an-instance)
-..* [Delete an Instance](#delete-an-instance)
+??* [Create a new Instance](#create-a-new-instance)
+??* [Find Instances](#find-instances)
+??* [Update an Instance](#update-an-instance)
+??* [Delete an Instance](#delete-an-instance)
 
 2. Templates
-..* [Create a new Template](#create-a-new-template)
-..* [Find Templates](#find-templates)
-..* [Update a Template](#update-a-template)
-..* [Delete a Template](#delete-a-template)
+??*  [Create a new Template](#create-a-new-template)
+??* [Find Templates](#find-templates)
+??* [Update a Template](#update-a-template)
+??* [Delete a Template](#delete-a-template)
 
 # Create a new Instance 
 
@@ -249,7 +249,7 @@ PATCH /templates/582b8c99e51db91428fcc42d
 }
 ```
 
-# Delete an Template 
+# Delete a Template 
 
 **Request**
 
