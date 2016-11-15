@@ -76,9 +76,9 @@ describe('Templates REST API', function() {
   it('create', function(done) {
     o.coForEach(docs, function * (doc) {
       const res = yield o.request.post(url, doc);
-      o.assert(res.data.id);
-      doc.id = res.data.id;
-      o.assert.strictEqual(res.data.name, doc.name);
+      o.assert(res.data.result.id);
+      doc.id = res.data.result.id;
+      o.assert.strictEqual(res.data.result.name, doc.name);
     })
     .then(() => {
       done();
@@ -91,8 +91,8 @@ describe('Templates REST API', function() {
   it('get all', function(done) {
     o.request.get(url)
       .then((res) => {
-        o.assert.strictEqual(res.data.length, docs.length);
-        o.assert.isOk(contain(docs, res.data));
+        o.assert.strictEqual(res.data.result.length, docs.length);
+        o.assert.isOk(contain(docs, res.data.result));
         done();
       })
       .catch((err) => {
@@ -103,9 +103,9 @@ describe('Templates REST API', function() {
   it('get by id', function(done) {
     o.request.get(url + '?id=' + docs[0].id)
       .then((res) => {
-        o.assert.strictEqual(res.data.length, 1);
-        o.assert.strictEqual(res.data[0].id, docs[0].id);
-        o.assert.strictEqual(res.data[0].name, docs[0].name);
+        o.assert.strictEqual(res.data.result.length, 1);
+        o.assert.strictEqual(res.data.result[0].id, docs[0].id);
+        o.assert.strictEqual(res.data.result[0].name, docs[0].name);
         done();
       })
       .catch((err) => {
@@ -117,9 +117,9 @@ describe('Templates REST API', function() {
     o.request.get(url + '?name=' + docs[1].name)
       .then((res) => {
         console.log(res);
-        o.assert.strictEqual(res.data.length, 1);
-        o.assert.strictEqual(res.data[0].id, docs[1].id);
-        o.assert.strictEqual(res.data[0].name, docs[1].name);
+        o.assert.strictEqual(res.data.result.length, 1);
+        o.assert.strictEqual(res.data.result[0].id, docs[1].id);
+        o.assert.strictEqual(res.data.result[0].name, docs[1].name);
         done();
       })
       .catch((err) => {
@@ -132,26 +132,26 @@ describe('Templates REST API', function() {
       let resp;
 
       resp = yield o.request.get(url + '?properties.env=beta');
-      o.assert.strictEqual(resp.data.length, 1);
-      o.assert.strictEqual(resp.data[0].name, docs[1].name);
+      o.assert.strictEqual(resp.data.result.length, 1);
+      o.assert.strictEqual(resp.data.result[0].name, docs[1].name);
 
       resp = yield o.request.post(url + '/search', {
         'properties.env': 'beta',
       });
-      o.assert.strictEqual(resp.data.length, 1);
-      o.assert.strictEqual(resp.data[0].name, docs[1].name);
+      o.assert.strictEqual(resp.data.result.length, 1);
+      o.assert.strictEqual(resp.data.result[0].name, docs[1].name);
 
       const sliced = o.lodash.cloneDeep(docs).slice(1, 3);
 
       resp = yield o.request.get(url + '?properties.env=beta,prod');
-      o.assert.strictEqual(resp.data.length, 2);
-      o.assert.isOk(contain(sliced, resp.data));
+      o.assert.strictEqual(resp.data.result.length, 2);
+      o.assert.isOk(contain(sliced, resp.data.result));
 
       resp = yield o.request.post(url + '/search', {
         'properties.env': 'beta,prod',
       });
-      o.assert.strictEqual(resp.data.length, 2);
-      o.assert.isOk(contain(sliced, resp.data));
+      o.assert.strictEqual(resp.data.result.length, 2);
+      o.assert.isOk(contain(sliced, resp.data.result));
 
       done();
     })
@@ -163,7 +163,7 @@ describe('Templates REST API', function() {
   it('limit results', function(done) {
     o.co(function * () {
       const resp = yield o.request.get(url + '?limit=2');
-      o.assert.strictEqual(resp.data.length, 2);
+      o.assert.strictEqual(resp.data.result.length, 2);
       done();
     })
     .catch((err) => {
@@ -175,7 +175,7 @@ describe('Templates REST API', function() {
     o.co(function * () {
       const resp = yield o.request.get(url + '?sort=name');
       const source = docs.map((e) => { return e.name }).sort();
-      const data = resp.data.map((e) => { return e.name });
+      const data = resp.data.result.map((e) => { return e.name });
       o.assert.deepEqual(source, data);
       done();
     })
@@ -193,7 +193,20 @@ describe('Templates REST API', function() {
           name: 'one.one',
         },
       });
-      o.assert.strictEqual(resp.data.name, 'one.one');
+      o.assert.strictEqual(resp.data.result.name, 'one.one');
+      done();
+    })
+    .catch((err) => {
+      done(err);
+    });
+  });
+
+  it('delete', function(done) {
+    o.co(function * () {
+      let resp = yield o.request.delete(url + '/' + docs[0].id);
+      o.assert.strictEqual(resp.data.result.id, docs[0].id);
+      resp = yield o.request.get(url + '/?id=' + docs[0].id);
+      o.assert.strictEqual(resp.data.result.length, 0);
       done();
     })
     .catch((err) => {
