@@ -49,7 +49,7 @@ function contain(source, data) {
   }
   return true;
 }
-describe('instances restapi', function() {
+describe.skip('instances restapi', function() {
 
   it('mandatory fields', function(done) {
     o.co(function * (){
