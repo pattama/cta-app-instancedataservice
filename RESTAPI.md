@@ -3,14 +3,14 @@ Rest API
 
 # Summary
 
-1. Instances
+**Instances**
 
 * [Create a new Instance](#create-a-new-instance)
 * [Find Instances](#find-instances)
 * [Update an Instance](#update-an-instance)
 * [Delete an Instance](#delete-an-instance)
 
-2. Templates
+**Templates**
 
 *  [Create a new Template](#create-a-new-template)
 * [Find Templates](#find-templates)
