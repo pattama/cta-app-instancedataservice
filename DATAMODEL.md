@@ -3,8 +3,8 @@ Data Model
 
 # Summary
 
-* Instance data model(#instance-data-model)
-* Template data model(#template-data-model)
+* [Instance data model](#instance-data-model)
+* [Template data model](#template-data-model)
 
 # Instance data model
 
