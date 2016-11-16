@@ -29,7 +29,7 @@ POST /instances
   "properties": {
       "os": "windows 7",
       "office": "office 2013",
-      "env": "alpha"
+      "env": ["alpha", "beta"]
   }
 }
 ```
@@ -46,13 +46,15 @@ POST /instances
     "properties": {
       "os": "windows 7",
       "office": "office 2013",
-      "env": "alpha"
+      "env": ["alpha", "beta"]
     }
   }
 }
 ```
 
-# Find Instances 
+# Find Instances
+
+## Find by hostname
 
 **Request**
 
@@ -73,7 +75,39 @@ GET /instances?hostname=localhost
       "properties": {
         "os": "windows 7",
         "office": "office 2013",
-        "env": "alpha"
+        "env": ["alpha", "beta"]
+      }
+      "used": null,
+      "lastUsed": null,
+      "runningSince": null,
+      "features": null
+    }
+  ]
+}
+```
+
+## Find by properties
+
+**Request**
+
+```ruby
+GET /instances?properties.os=windows 7
+```
+
+**Response**
+
+```ruby
+200
+{
+  "result": [
+    {
+      "id": "582b8ae883672f210c93c221",
+      "hostname": "localhost",
+      "ip": "12.34.56.78",
+      "properties": {
+        "os": "windows 7",
+        "office": "office 2013",
+        "env": ["alpha", "beta"]
       }
       "used": null,
       "lastUsed": null,
@@ -108,7 +142,7 @@ PATCH /instances/582b8ae883672f210c93c221
     "properties": {
       "os": "windows 7",
       "office": "office 2013",
-      "env": "alpha"
+      "env": ["alpha", "beta"]
     }
   }
 }
@@ -134,7 +168,7 @@ DELETE /instances/582b8ae883672f210c93c221
     "properties": {
       "os": "windows 7",
       "office": "office 2013",
-      "env": "alpha"
+      "env": ["alpha", "beta"]
     }
   }
 }
