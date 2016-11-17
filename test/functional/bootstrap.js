@@ -16,8 +16,7 @@ before(function(done) {
           done(err);
         } else {
           db.close();
-          const file = o.path.resolve(__dirname, '..', '..', '..', 'lib', 'index.js');
-          child = new(o.forever.Monitor)(file, {
+          child = new(o.forever.Monitor)(o.app, {
             max: 0,
             silent: true,
             logFile: logFile,
