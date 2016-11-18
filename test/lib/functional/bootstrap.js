@@ -7,7 +7,7 @@ before(function(done) {
   this.timeout(5000);
   // TODO provide mongodb cta-oss dev server
   const logFile = o.path.resolve(o.os.tmpDir(), 'cta-app-instancedataservice-main.log');
-  o.mongoClient.connect('mongodb://localhost:27017/oss', function(err, db) {
+  o.mongoClient.connect('mongodb://10.211.55.3:27017/oss', function(err, db) {
     if (err) {
       done(err);
     } else {
