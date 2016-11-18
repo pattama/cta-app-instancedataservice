@@ -5,6 +5,7 @@ const path= require('path');
 const Request = require('cta-tool-request');
 
 module.exports = {
+  root: path.resolve(__dirname, '..'),
   app: path.resolve(__dirname, '..', 'lib', 'index.js'),
   assert: chai.assert,
   superagent: require('superagent'),
