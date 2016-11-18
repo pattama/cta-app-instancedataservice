@@ -2,34 +2,46 @@
 
 const o = require('../common');
 
-const url = 'http://localhost:3000/instances';
+const url = 'http://localhost:3000/templates';
 const docs = [{
-  hostname: 'one',
-  ip: '11.11.11.11',
+  name: 'one',
   properties: {
     os: 'windows 7',
     office: 'office 2013',
     env: 'alpha',
   },
+  templateId: 'template-one',
+  cloud: {
+    id: 'cloud-one',
+    name: 'cloud one',
+  },
 }, {
-  hostname: 'two',
-  ip: '22.22.22.22',
+  name: 'two',
   properties: {
     os: 'windows 8',
     office: 'office 2013',
     env: ['alpha', 'beta'],
   },
+  templateId: 'template-two',
+  cloud: {
+    id: 'cloud-two',
+    name: 'cloud two',
+  },
 }, {
-  hostname: 'three',
-  ip: '33.33.33.33',
+  name: 'three',
   properties: {
     os: 'windows 10',
     office: 'office 2016',
     env: 'prod',
   },
+  templateId: 'template-three',
+  cloud: {
+    id: 'cloud-three',
+    name: 'cloud three',
+  },
 }];
 function sort(a, b) {
-  return a.hostname > b.hostname ? 1 : -1;
+  return a.name > b.name ? 1 : -1;
 }
 function contain(source, data) {
   if (!Array.isArray(data)) {
@@ -41,7 +53,7 @@ function contain(source, data) {
   for (let i = 0; i < source.length; i++) {
     const doc = source[i];
     const arr = data.filter((e) => {
-      return e.hostname === doc.hostname;
+      return e.name === doc.name;
     });
     if (arr.length !== 1) {
       return false;
@@ -49,11 +61,11 @@ function contain(source, data) {
   }
   return true;
 }
-describe('Instances REST API', function() {
+describe('Templates REST API', function() {
 
   it('mandatory fields', function(done) {
-    o.co(function * () {
-      const resp = yield o.request.post(url, {hostname: 'foo'});
+    o.co(function * (){
+      const resp = yield o.request.post(url, {name: 'foo'});
       done('should raise an error');
     })
     .catch((err) => {
@@ -64,11 +76,9 @@ describe('Instances REST API', function() {
   it('create', function(done) {
     o.coForEach(docs, function * (doc) {
       const res = yield o.request.post(url, doc);
-      console.log(res.data);
       o.assert(res.data.result.id);
       doc.id = res.data.result.id;
-      o.assert.strictEqual(res.data.result.hostname, doc.hostname);
-      o.assert.strictEqual(res.data.result.ip, doc.ip);
+      o.assert.strictEqual(res.data.result.name, doc.name);
     })
     .then(() => {
       done();
@@ -95,8 +105,7 @@ describe('Instances REST API', function() {
       .then((res) => {
         o.assert.strictEqual(res.data.result.length, 1);
         o.assert.strictEqual(res.data.result[0].id, docs[0].id);
-        o.assert.strictEqual(res.data.result[0].hostname, docs[0].hostname);
-        o.assert.strictEqual(res.data.result[0].ip, docs[0].ip);
+        o.assert.strictEqual(res.data.result[0].name, docs[0].name);
         done();
       })
       .catch((err) => {
@@ -104,14 +113,13 @@ describe('Instances REST API', function() {
       });
   });
 
-  it('get by hostname', function(done) {
-    o.request.get(url + '?hostname=' + docs[1].hostname)
+  it('get by name', function(done) {
+    o.request.get(url + '?name=' + docs[1].name)
       .then((res) => {
         console.log(res);
         o.assert.strictEqual(res.data.result.length, 1);
         o.assert.strictEqual(res.data.result[0].id, docs[1].id);
-        o.assert.strictEqual(res.data.result[0].hostname, docs[1].hostname);
-        o.assert.strictEqual(res.data.result[0].ip, docs[1].ip);
+        o.assert.strictEqual(res.data.result[0].name, docs[1].name);
         done();
       })
       .catch((err) => {
@@ -125,13 +133,13 @@ describe('Instances REST API', function() {
 
       resp = yield o.request.get(url + '?properties.env=beta');
       o.assert.strictEqual(resp.data.result.length, 1);
-      o.assert.strictEqual(resp.data.result[0].hostname, docs[1].hostname);
+      o.assert.strictEqual(resp.data.result[0].name, docs[1].name);
 
       resp = yield o.request.post(url + '/search', {
         'properties.env': 'beta',
       });
       o.assert.strictEqual(resp.data.result.length, 1);
-      o.assert.strictEqual(resp.data.result[0].hostname, docs[1].hostname);
+      o.assert.strictEqual(resp.data.result[0].name, docs[1].name);
 
       const sliced = o.lodash.cloneDeep(docs).slice(1, 3);
 
@@ -165,9 +173,9 @@ describe('Instances REST API', function() {
 
   it('sort results', function(done) {
     o.co(function * () {
-      const resp = yield o.request.get(url + '?sort=hostname');
-      const source = docs.map((e) => { return e.hostname }).sort();
-      const data = resp.data.result.map((e) => { return e.hostname });
+      const resp = yield o.request.get(url + '?sort=name');
+      const source = docs.map((e) => { return e.name }).sort();
+      const data = resp.data.result.map((e) => { return e.name });
       o.assert.deepEqual(source, data);
       done();
     })
@@ -182,10 +190,10 @@ describe('Instances REST API', function() {
         method: 'patch',
         url: url + '/' + docs[0].id,
         body: {
-          ip: '00.00.00.00',
+          name: 'one.one',
         },
       });
-      o.assert.strictEqual(resp.data.result.ip, '00.00.00.00');
+      o.assert.strictEqual(resp.data.result.name, 'one.one');
       done();
     })
     .catch((err) => {
