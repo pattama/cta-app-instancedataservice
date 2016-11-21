@@ -20,7 +20,7 @@ const DEFAULTCEMENTHELPER = {
   },
   createContext: function() {},
 };
-const EXECUTION = require('./instances.create.sample.testdata.js');
+const INSTANCE = require('./instances.create.sample.testdata.js');
 
 describe('Utils - RESTAPI - Handlers - Instances - create', function() {
   let handler;
@@ -40,7 +40,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
     before(function() {
       req.method = 'POST';
       req.params = {};
-      req.body = _.cloneDeep(EXECUTION);
+      req.body = _.cloneDeep(INSTANCE);
       data = {
         nature: {
           type: 'instance',
@@ -78,7 +78,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
         const response = { ok: 1 };
         mockContext.emit('done', mockBrickname, response);
         sinon.assert.calledWith(res.status, 201);
-        sinon.assert.calledWith(res.send, response);
+        sinon.assert.calledWith(res.send, {result: response});
       });
     });
 
@@ -97,7 +97,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('error', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
 
@@ -116,7 +116,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('reject', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
   });
@@ -137,7 +137,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
         req.params = {
           id: 'foobar',
         };
-        req.body = _.cloneDeep(EXECUTION);
+        req.body = _.cloneDeep(INSTANCE);
         data = {
           nature: {
             type: 'instance',
@@ -175,7 +175,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
       before(function() {
         req.method = 'PUT';
         req.params = {};
-        req.body = _.cloneDeep(EXECUTION);
+        req.body = _.cloneDeep(INSTANCE);
         data = {
           nature: {
             type: 'instance',
@@ -199,7 +199,7 @@ describe('Utils - RESTAPI - Handlers - Instances - create', function() {
       it('should send 400', function() {
         handler.create(req, res, null);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, 'Missing \'id\' property');
+        sinon.assert.calledWith(res.send, {error: 'Missing \'id\' property'});
       });
     });
   });

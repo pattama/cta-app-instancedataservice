@@ -77,7 +77,7 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
           const mockBrickname = 'businesslogic';
           const response = { id: req.params.id };
           mockContext.emit('done', mockBrickname, response);
-          sinon.assert.calledWith(res.send, response);
+          sinon.assert.calledWith(res.send, {result: response});
         });
       });
 
@@ -96,7 +96,7 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
           const response = null;
           mockContext.emit('done', mockBrickname, response);
           sinon.assert.calledWith(res.status, 404);
-          sinon.assert.calledWith(res.send, 'Instance not found.');
+          sinon.assert.calledWith(res.send, {error: 'Instance not found.'});
         });
       });
     });
@@ -116,7 +116,7 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('error', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
 
@@ -135,7 +135,7 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('reject', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
   });

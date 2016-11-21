@@ -21,7 +21,7 @@ const DEFAULTCEMENTHELPER = {
   },
   createContext: function() {},
 };
-const EXECUTION = require('./instances.update.sample.testdata.js');
+const INSTANCE = require('./instances.update.sample.testdata.js');
 
 describe('Utils - RESTAPI - Handlers - Instances - update', function() {
   let handler;
@@ -41,7 +41,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
     let data;
     let mockContext;
     before(function () {
-      req.body = _.cloneDeep(EXECUTION);
+      req.body = _.cloneDeep(INSTANCE);
       req.params = {
         id: (new ObjectID()).toString(),
       };
@@ -83,7 +83,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('error', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
 
@@ -102,7 +102,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('reject', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
 
@@ -118,7 +118,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
         const mockBrickname = 'businesslogic';
         const response = { id: req.body.id };
         mockContext.emit('done', mockBrickname, response);
-        sinon.assert.calledWith(res.send, response);
+        sinon.assert.calledWith(res.send, {result: response});
       });
     });
 
@@ -137,7 +137,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
         const response = null;
         mockContext.emit('done', mockBrickname, response);
         sinon.assert.calledWith(res.status, 404);
-        sinon.assert.calledWith(res.send, 'Instance not found.');
+        sinon.assert.calledWith(res.send, {error: 'Instance not found.'});
       });
     });
   });

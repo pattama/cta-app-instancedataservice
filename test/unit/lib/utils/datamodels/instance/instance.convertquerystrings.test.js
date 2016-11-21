@@ -15,28 +15,26 @@ describe('Data Model - Instance - ConvertQueryStrings', function() {
     it('should return converted query', function() {
       const query = {
         id: (new ObjectID()).toString(),
-        requestTimestamp: '1000',
+        hostname: 'foo.com',
         notaproperty: 'foobar',
       };
       const expected = {
         id: query.id,
-        requestTimestamp: 1000,
+        hostname: 'foo.com',
       };
       const actual = Model.convertQueryStrings(query);
       expect(_.isEqual(actual, expected)).to.be.equal(true);
     });
   });
 
-  context('when cannot parse number (parseInt)', function() {
-    it('should return converted query', function() {
+  context.skip('when cannot parse number (parseInt)', function() {
+    it.skip('should return converted query', function() {
       const query = {
         id: (new ObjectID()).toString(),
-        requestTimestamp: 'foobar',
         notaproperty: 'foobar',
       };
       const expected = {
         id: query.id,
-        requestTimestamp: NaN,
       };
       const actual = Model.convertQueryStrings(query);
       expect(_.isEqual(actual, expected)).to.be.equal(true);

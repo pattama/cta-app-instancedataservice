@@ -42,19 +42,18 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
       req.query = {
         limit: 10,
         offset: 0,
-        sort: '-requestTimestamp,resultsCount',
-        status: 'finished',
-        done: 'true',
+        sort: '-hostname,ip',
+        hostname: 'foo.com',
       };
       const filter = {
         limit: parseInt(req.query.limit, 10),
         offset: parseInt(req.query.offset, 0),
         sort: {
-          requestTimestamp: -1,
-          resultsCount: 1,
+          hostname: -1,
+          ip: 1,
         },
       };
-      const query = Instance.convertQueryStrings(_.omit(req.query, Object.keys(filter)));
+      const query = _.omit(req.query, Object.keys(filter));
       sinonCustomMatcher = sinon.match(function(data) {
         return _.isEqual(data, {
           nature: {
@@ -96,7 +95,7 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
           const mockBrickname = 'businesslogic';
           const response = {};
           mockContext.emit('done', mockBrickname, response);
-          sinon.assert.calledWith(res.send, response);
+          sinon.assert.calledWith(res.send, {result: response});
         });
       });
     });
@@ -116,7 +115,7 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('error', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
 
@@ -135,7 +134,7 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('reject', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, error.message);
+        sinon.assert.calledWith(res.send, {error: error.message});
       });
     });
   });
