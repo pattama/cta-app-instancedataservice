@@ -29,7 +29,6 @@ const DEFAULTCEMENTHELPER = {
 describe('DatabaseInterfaces - MongoDB - UpdateOne - _process', function() {
   let helper;
   const mockId = new ObjectID();
-  const mockScenarioId = new ObjectID();
   const inputJOB = {
     nature: {
       type: 'dbInterface',
@@ -42,7 +41,7 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _process', function() {
         resultsCount: { $lt: 10 },
       },
       content: {
-        scenarioId: mockScenarioId.toString(),
+        hostname: 'foo.com',
       },
     },
   };
@@ -67,7 +66,7 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _process', function() {
       }, inputJOB.payload.filter);
       mongoDbDocument = {
         $set: {
-          scenarioId: mockScenarioId,
+          hostname: 'foo.com',
         },
       };
       const mongoDbOptions = {
@@ -108,7 +107,7 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _process', function() {
         it('should emit done event on inputContext', function() {
           const responseDocument = {
             _id: mockId,
-            scenarioId: mockScenarioId,
+            hostname: 'foo.fr',
           };
           const response = {
             ok: 1,
