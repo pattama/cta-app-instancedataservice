@@ -8,8 +8,6 @@ const EventEmitter = require('events');
 const Logger = require('cta-logger');
 const Handler = require(nodepath.join(appRootPath,
   '/lib/utils/restapi/handlers/', 'instances.js'));
-const Instance = require(nodepath.join(appRootPath,
-  '/lib/utils/datamodels/', 'instance.js'));
 
 const DEFAULTLOGGER = new Logger();
 const DEFAULTCEMENTHELPER = {
@@ -95,7 +93,7 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
           const mockBrickname = 'businesslogic';
           const response = {};
           mockContext.emit('done', mockBrickname, response);
-          sinon.assert.calledWith(res.send, {result: response});
+          sinon.assert.calledWith(res.send, { result: response });
         });
       });
     });
@@ -115,7 +113,7 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('error', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, {error: error.message});
+        sinon.assert.calledWith(res.send, { error: error.message });
       });
     });
 
@@ -134,7 +132,7 @@ describe('Utils - RESTAPI - Handlers - Instances - find', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('reject', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, {error: error.message});
+        sinon.assert.calledWith(res.send, { error: error.message });
       });
     });
   });

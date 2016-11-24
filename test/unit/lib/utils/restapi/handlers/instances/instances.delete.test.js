@@ -16,27 +16,28 @@ const DEFAULTCEMENTHELPER = {
   },
   brickName: 'restapi',
   logger: DEFAULTLOGGER,
-  dependencies: {
+  dependencies: {},
+  createContext: function () {
   },
-  createContext: function() {},
 };
 
-describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
+describe('Utils - RESTAPI - Handlers - Instances - delete', function () {
   let handler;
-  before(function() {
+  before(function () {
     handler = new Handler(DEFAULTCEMENTHELPER);
   });
-  context('when everything ok', function() {
+  context('when everything ok', function () {
     const req = {};
     const res = {
-      status: function() {
+      status: function () {
         return this;
       },
-      send: function() {},
+      send: function () {
+      },
     };
     let data;
     let mockContext;
-    before(function() {
+    before(function () {
       req.params = {
         id: (new ObjectID()).toString(),
       };
@@ -55,59 +56,59 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
         .withArgs(data)
         .returns(mockContext);
     });
-    after(function() {
+    after(function () {
       handler.cementHelper.createContext.restore();
     });
-    it('should send a new Context', function() {
+    it('should send a new Context', function () {
       handler.delete(req, res, null);
       sinon.assert.calledWith(handler.cementHelper.createContext, data);
       sinon.assert.called(mockContext.publish);
     });
 
-    context('when Context emits done event', function() {
-      context('when document is found', function() {
-        before(function() {
+    context('when Context emits done event', function () {
+      context('when document is found', function () {
+        before(function () {
           sinon.spy(res, 'send');
           handler.delete(req, res, null);
         });
-        after(function() {
+        after(function () {
           res.send.restore();
         });
-        it('should send the found Object (res.send())', function() {
+        it('should send the found Object (res.send())', function () {
           const mockBrickname = 'businesslogic';
           const response = { id: req.params.id };
           mockContext.emit('done', mockBrickname, response);
-          sinon.assert.calledWith(res.send, {result: response});
+          sinon.assert.calledWith(res.send, { result: response });
         });
       });
 
-      context('when document is not found', function() {
-        before(function() {
+      context('when document is not found', function () {
+        before(function () {
           sinon.spy(res, 'status');
           sinon.spy(res, 'send');
           handler.delete(req, res, null);
         });
-        after(function() {
+        after(function () {
           res.status.restore();
           res.send.restore();
         });
-        it('should send 404', function() {
+        it('should send 404', function () {
           const mockBrickname = 'businesslogic';
           const response = null;
           mockContext.emit('done', mockBrickname, response);
           sinon.assert.calledWith(res.status, 404);
-          sinon.assert.calledWith(res.send, {error: 'Instance not found.'});
+          sinon.assert.calledWith(res.send, { error: 'Instance not found.' });
         });
       });
     });
 
-    context('when Context emits error event', function() {
-      before(function() {
+    context('when Context emits error event', function () {
+      before(function () {
         sinon.spy(res, 'status');
         sinon.spy(res, 'send');
         handler.delete(req, res, null);
       });
-      after(function() {
+      after(function () {
         res.status.restore();
         res.send.restore();
       });
@@ -116,17 +117,17 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('error', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, {error: error.message});
+        sinon.assert.calledWith(res.send, { error: error.message });
       });
     });
 
-    context('when Context emits reject event', function() {
-      before(function() {
+    context('when Context emits reject event', function () {
+      before(function () {
         sinon.spy(res, 'status');
         sinon.spy(res, 'send');
         handler.delete(req, res, null);
       });
-      after(function() {
+      after(function () {
         res.status.restore();
         res.send.restore();
       });
@@ -135,7 +136,7 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function() {
         const mockBrickname = 'businesslogic';
         mockContext.emit('reject', mockBrickname, error);
         sinon.assert.calledWith(res.status, 400);
-        sinon.assert.calledWith(res.send, {error: error.message});
+        sinon.assert.calledWith(res.send, { error: error.message });
       });
     });
   });

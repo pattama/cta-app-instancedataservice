@@ -124,5 +124,4 @@ describe('DatabaseInterfaces - MongoDB - Find - _validate', function() {
         .be.rejectedWith(Error, 'missing/incorrect \'query\' Object in job payload');
     });
   });
-
 });

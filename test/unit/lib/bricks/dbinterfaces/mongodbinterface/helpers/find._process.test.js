@@ -26,7 +26,6 @@ const DEFAULTCEMENTHELPER = {
 
 describe('DatabaseInterfaces - MongoDB - Find - _process', function() {
   let helper;
-  const mockId = new ObjectID();
   const inputJOB = {
     nature: {
       type: 'dbInterface',

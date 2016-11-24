@@ -4,7 +4,6 @@ const appRootPath = require('cta-common').root('cta-app-instancedataservice');
 const chai = require('chai');
 const expect = chai.expect;
 const nodepath = require('path');
-const _ = require('lodash');
 
 const Logger = require('cta-logger');
 const Base = require(nodepath.join(appRootPath,

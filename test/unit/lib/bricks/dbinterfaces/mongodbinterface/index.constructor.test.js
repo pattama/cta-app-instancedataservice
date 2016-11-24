@@ -70,7 +70,6 @@ describe('DatabaseInterfaces - MongoDB - Constructor', function() {
       Object.keys(mockHelpers).forEach((key) => {
         const value = mockHelpers[key];
         sinon.assert.calledWith(value.MockConstructor, instance.cementHelper, instance.logger);
-        console.log('helper ' + key, instance.helpers.get(key));
         expect(instance.helpers.has(key)).to.equal(true);
         expect(instance.helpers.get(key))
           .to.equal(value.MockConstructor.returnValues[0]);

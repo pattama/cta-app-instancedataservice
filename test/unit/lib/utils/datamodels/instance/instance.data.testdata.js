@@ -1,5 +1,4 @@
 'use strict';
-const ObjectID = require('bson').ObjectID;
 
 const data = {
   hostname: 'foo.com',
