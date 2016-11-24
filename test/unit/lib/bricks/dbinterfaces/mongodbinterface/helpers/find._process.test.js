@@ -2,7 +2,6 @@
 
 const appRootPath = require('cta-common').root('cta-app-instancedataservice');
 const sinon = require('sinon');
-const ObjectID = require('bson').ObjectID;
 const nodepath = require('path');
 
 const Logger = require('cta-logger');
