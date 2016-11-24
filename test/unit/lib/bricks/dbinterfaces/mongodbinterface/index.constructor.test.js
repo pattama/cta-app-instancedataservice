@@ -30,17 +30,10 @@ describe('DatabaseInterfaces - MongoDB - Constructor', function() {
   context('when everything ok', function() {
     let Interface;
     let instance;
-    const mockHelpers = new Map();
+    const mockHelpers = {};
     const helpersCamelCasedNames = {
-      'count.js': 'count',
       'deleteone.js': 'deleteOne',
       'find.js': 'find',
-      'findbyid.js': 'findById',
-      'getinstancesstates.js': 'getInstancesStates',
-      'getresultscount.js': 'getResultsCount',
-      'getresultsindex.js': 'getResultsIndex',
-      'getstatescount.js': 'getStatesCount',
-      'getstatesindex.js': 'getStatesIndex',
       'insertone.js': 'insertOne',
       'updateone.js': 'updateOne',
     };
@@ -50,17 +43,19 @@ describe('DatabaseInterfaces - MongoDB - Constructor', function() {
         '/lib/bricks/dbinterfaces/mongodbinterface/helpers');
       const helpersList = fs.readdirSync(helpersDirectory);
       helpersList.forEach(function(helperFileName) {
-        mockHelpers.set(helperFileName, {
+        const key = helpersCamelCasedNames[helperFileName];
+        mockHelpers[key] = {
           MockConstructor: function() {
             return {
+              name: key,
               ok: 1,
             };
           },
           path: nodepath.join(helpersDirectory, helperFileName),
-        });
-        sinon.spy(mockHelpers.get(helperFileName), 'MockConstructor');
-        mockrequire(mockHelpers.get(helperFileName).path,
-          mockHelpers.get(helperFileName).MockConstructor);
+        };
+        sinon.spy(mockHelpers[key], 'MockConstructor');
+        mockrequire(mockHelpers[key].path,
+          mockHelpers[key].MockConstructor);
       });
       Interface = require(interfacePath); // eslint-disable-line global-require
 
@@ -72,11 +67,12 @@ describe('DatabaseInterfaces - MongoDB - Constructor', function() {
     });
 
     it('should instantiate all available helpers', function() {
-      mockHelpers.forEach((value, key) => {
-        const helperName = helpersCamelCasedNames[key];
+      Object.keys(mockHelpers).forEach((key) => {
+        const value = mockHelpers[key];
         sinon.assert.calledWith(value.MockConstructor, instance.cementHelper, instance.logger);
-        expect(instance.helpers.has(helperName)).to.equal(true);
-        expect(instance.helpers.get(helperName))
+        console.log('helper ' + key, instance.helpers.get(key));
+        expect(instance.helpers.has(key)).to.equal(true);
+        expect(instance.helpers.get(key))
           .to.equal(value.MockConstructor.returnValues[0]);
       });
     });

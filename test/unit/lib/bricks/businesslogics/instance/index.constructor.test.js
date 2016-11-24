@@ -34,16 +34,10 @@ describe('BusinessLogics - Instance - constructor', function() {
     let Logic;
     let logic;
     const helpersCamelCasedNames = {
-      'cancel.js': 'cancel',
       'create.js': 'create',
       'delete.js': 'delete',
-      'finalize.js': 'finalize',
       'find.js': 'find',
-      'findbyid.js': 'findById',
-      'timeout.js': 'timeout',
       'update.js': 'update',
-      'updateresult.js': 'updateResult',
-      'updatestate.js': 'updateState',
     };
     const mockHelpers = new Map();
     before(function() {
@@ -72,12 +66,6 @@ describe('BusinessLogics - Instance - constructor', function() {
     it('should extend Base Logic', function() {
       expect(Object.getPrototypeOf(Logic)).to.equal(Base);
     });
-
-    /*it('should set apiURLs property', function() {
-      expect(logic).to.have.property('apiURLs');
-      expect(logic.apiURLs).to.have.property('instanceApiUrl',
-        DEFAULTCONFIG.properties.instanceApiUrl);
-    });*/
 
     it('should instantiate all available helpers', function() {
       mockHelpers.forEach((value, key) => {
