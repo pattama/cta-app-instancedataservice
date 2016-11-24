@@ -17,6 +17,8 @@ describe('Data Model - Instance - Keys', function() {
         hostname: { type: 'string' },
         ip: { type: 'string' },
         properties: { type: 'object', optional: true },
+        executionId: { type: 'string', optional: true },
+        state: { type: 'string', optional: true },
       };
       expect(_.isEqual(Model.keys(), keys)).to.be.equal(true);
     });

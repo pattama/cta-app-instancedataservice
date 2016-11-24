@@ -16,6 +16,8 @@ describe('Data Model - Instance - QueryKeys', function() {
         hostname: { type: 'string' },
         ip: { type: 'string' },
         properties: { type: 'object', optional: true },
+        executionId: { type: 'string', optional: true },
+        state: { type: 'string', optional: true },
       };
       const queryKeys = Model.queryKeys();
       assert.deepEqual(queryKeys, keys);
