@@ -26,18 +26,4 @@ describe('Data Model - Instance - ConvertQueryStrings', function() {
       expect(_.isEqual(actual, expected)).to.be.equal(true);
     });
   });
-
-  context.skip('when cannot parse number (parseInt)', function() {
-    it.skip('should return converted query', function() {
-      const query = {
-        id: (new ObjectID()).toString(),
-        notaproperty: 'foobar',
-      };
-      const expected = {
-        id: query.id,
-      };
-      const actual = Model.convertQueryStrings(query);
-      expect(_.isEqual(actual, expected)).to.be.equal(true);
-    });
-  });
 });
