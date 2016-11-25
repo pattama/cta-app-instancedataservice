@@ -8,7 +8,7 @@ const ObjectID = require('bson').ObjectID;
 const Logger = require('cta-logger');
 const pathToHelper = nodepath.join(appRootPath,
   '/lib/bricks/dbinterfaces/mongodbinterface/helpers/', 'updateone.js');
-let Helper = require(pathToHelper);
+const Helper = require(pathToHelper);
 const config = require('../index.config.testdata.js');
 const logger = new Logger();
 const CementHelper = {
