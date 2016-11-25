@@ -1,157 +1,100 @@
 'use strict';
 
 const appRootPath = require('cta-common').root('cta-app-instancedataservice');
+const Context = require('events').EventEmitter;
 const sinon = require('sinon');
 const nodepath = require('path');
 const ObjectID = require('bson').ObjectID;
-const requireSubvert = require('require-subvert')(__dirname);
-const _ = require('lodash');
-
 const Logger = require('cta-logger');
-const Context = require('cta-flowcontrol').Context;
 const pathToHelper = nodepath.join(appRootPath,
   '/lib/bricks/dbinterfaces/mongodbinterface/helpers/', 'updateone.js');
 let Helper = require(pathToHelper);
-
-const DEFAULTCONFIG = require('../index.config.testdata.js');
-const DEFAULTLOGGER = new Logger(null, null, DEFAULTCONFIG.name);
-const DEFAULTCEMENTHELPER = {
+const config = require('../index.config.testdata.js');
+const logger = new Logger();
+const CementHelper = {
   constructor: {
     name: 'CementHelper',
   },
-  brickName: DEFAULTCONFIG.name,
+  brickName: config.name,
   dependencies: {
-    logger: DEFAULTLOGGER,
+    logger: logger,
   },
   createContext: function() {},
 };
 
 describe('DatabaseInterfaces - MongoDB - UpdateOne - _process', function() {
-  let helper;
-  const mockId = new ObjectID();
-  const inputJOB = {
-    nature: {
-      type: 'dbInterface',
-      quality: 'updateOne',
-    },
-    payload: {
-      type: 'instance',
-      id: mockId.toString(),
-      filter: {
-        resultsCount: { $lt: 10 },
+  it('should create new context from input context', function() {
+    const input = {
+      nature: {
+        type: 'dbInterface',
+        quality: 'updateOne',
       },
-      content: {
-        hostname: 'foo.com',
+      payload: {
+        type: 'instance',
+        query: { hostname: 'foo.com' },
+        content: {
+          ip: '11.11.11.11',
+        },
       },
-    },
-  };
-  before(function() {
-    const StubObjectIDModule = sinon.stub().withArgs(mockId.toString()).returns(mockId);
-    requireSubvert.subvert('bson', {
-      ObjectID: StubObjectIDModule,
-    });
-    Helper = requireSubvert.require(pathToHelper);
-    helper = new Helper(DEFAULTCEMENTHELPER, DEFAULTLOGGER);
-  });
-  context('when everything ok', function() {
-    const mockInputContext = new Context(DEFAULTCEMENTHELPER, inputJOB);
-    let mockOutputContext;
-    let outputJOB;
-    let mongoDbDocument;
-    before(function() {
-      sinon.stub(mockInputContext, 'emit');
+    };
+    const output = {
+      nature: {
+        type: 'database',
+        quality: 'query',
+      },
+      payload: {
+        collection: input.payload.type,
+        action: 'findOneAndUpdate',
+        args: [
+          { hostname: 'foo.com' },
+          { $set: { ip: '11.11.11.11' } },
+          { returnOriginal: false },
+        ],
+      },
+    };
+    const helper = new Helper(CementHelper, logger);
 
-      const mongoDbFilter = _.assignIn({
-        _id: new ObjectID(inputJOB.payload.id),
-      }, inputJOB.payload.filter);
-      mongoDbDocument = {
-        $set: {
-          hostname: 'foo.com',
-        },
-      };
-      const mongoDbOptions = {
-        returnOriginal: false,
-      };
-      outputJOB = {
-        nature: {
-          type: 'database',
-          quality: 'query',
-        },
-        payload: {
-          collection: inputJOB.payload.type,
-          action: 'findOneAndUpdate',
-          args: [
-            mongoDbFilter,
-            mongoDbDocument,
-            mongoDbOptions,
-          ],
-        },
-      };
-      mockOutputContext = new Context(DEFAULTCEMENTHELPER, outputJOB);
-      mockOutputContext.publish = sinon.stub();
-      sinon.stub(helper.cementHelper, 'createContext')
-        // .withArgs(outputJOB)
-        .returns(mockOutputContext);
-      helper._process(mockInputContext);
-    });
-    after(function() {
-      helper.cementHelper.createContext.restore();
-    });
-    it('should send a new Context', function() {
-      sinon.assert.calledWith(helper.cementHelper.createContext, outputJOB);
-      sinon.assert.called(mockOutputContext.publish);
-    });
+    const inputContext = new Context();
+    inputContext.data = input;
+    sinon.stub(inputContext, 'emit');
 
-    context('when outputContext emits done event', function() {
-      context('when document was found and updated', function() {
-        it('should emit done event on inputContext', function() {
-          const responseDocument = {
-            _id: mockId,
-            hostname: 'foo.fr',
-          };
-          const response = {
-            ok: 1,
-            value: responseDocument,
-          };
+    const outputContext = new Context();
+    outputContext.publish = sinon.stub();
+    sinon.stub(helper.cementHelper, 'createContext')
+      .withArgs(output)
+      .returns(outputContext);
 
-          mockOutputContext.emit('done', 'dblayer', response);
-          sinon.assert.calledWith(mockInputContext.emit,
-            'done', helper.cementHelper.brickName);
-        });
-      });
+    helper._process(inputContext);
 
-      context('when document was not found', function() {
-        it('should emit done event on inputContext', function() {
-          const response = {
-            ok: 1,
-            value: null,
-          };
+    sinon.assert.calledWith(helper.cementHelper.createContext, output);
+    sinon.assert.called(outputContext.publish);
 
-          mockOutputContext.emit('done', 'dblayer', response);
-          sinon.assert.calledWith(mockInputContext.emit,
-            'done', helper.cementHelper.brickName, null);
-        });
-      });
-    });
+    const responseDocument = {
+      _id: new ObjectID(),
+      hostname: 'foo.com',
+      ip: '11.11.11.11',
+    };
+    let response = {
+      ok: 1,
+      value: responseDocument,
+    };
+    outputContext.emit('done', 'dblayer', response);
+    sinon.assert.calledWith(inputContext.emit, 'done', helper.cementHelper.brickName);
 
-    context('when outputContext emits reject event', function() {
-      it('should emit reject event on inputContext', function() {
-        const error = new Error('mockError');
-        const brickName = 'dblayer';
-        mockOutputContext.emit('reject', brickName, error);
-        sinon.assert.calledWith(mockInputContext.emit,
-          'reject', brickName, error);
-      });
-    });
+    response = {
+      ok: 1,
+      value: null,
+    };
+    outputContext.emit('done', 'dblayer', response);
+    sinon.assert.calledWith(inputContext.emit, 'done', helper.cementHelper.brickName, null);
 
-    context('when outputContext emits error event', function() {
-      it('should emit error event on inputContext', function() {
-        const error = new Error('mockError');
-        const brickName = 'dblayer';
-        mockOutputContext.emit('error', brickName, error);
-        sinon.assert.calledWith(mockInputContext.emit,
-          'error', brickName, error);
-      });
-    });
+    const error = new Error();
+    const brickName = 'dblayer';
+    outputContext.emit('reject', brickName, error);
+    sinon.assert.calledWith(inputContext.emit, 'reject', brickName, error);
+
+    outputContext.emit('error', brickName, error);
+    sinon.assert.calledWith(inputContext.emit, 'error', brickName, error);
+    helper.cementHelper.createContext.restore();
   });
 });

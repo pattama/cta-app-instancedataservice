@@ -37,7 +37,7 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _validate', function() {
     },
     payload: {
       type: 'instance',
-      id: mockId.toString(),
+      query: { id: mockId.toString() },
       content: {},
     },
   };
@@ -63,8 +63,7 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _validate', function() {
     const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
     it('should reject', function() {
       const validatePromise = helper._validate(mockInputContext);
-      return expect(validatePromise).to.eventually
-        .be.rejectedWith(Error, 'missing/incorrect \'type\' String in job payload');
+      return expect(validatePromise).to.be.rejected;
     });
   });
 
@@ -74,41 +73,17 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _validate', function() {
     const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
     it('should reject', function() {
       const validatePromise = helper._validate(mockInputContext);
-      return expect(validatePromise).to.eventually
-        .be.rejectedWith(Error, 'missing/incorrect \'content\' Object in job payload');
+      return expect(validatePromise).to.be.rejected;
     });
   });
 
-  context('when payload.filter is not an Object', function() {
+  context('when payload.query is not an Object', function() {
     const job = _.cloneDeep(DEFAULTINPUTJOB);
-    job.payload.filter = '';
+    job.payload.query = '';
     const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
     it('should reject', function() {
       const validatePromise = helper._validate(mockInputContext);
-      return expect(validatePromise).to.eventually
-        .be.rejectedWith(Error, 'incorrect \'filter\' Object in job payload');
-    });
-  });
-
-  context('when payload.id is not a String', function() {
-    const job = _.cloneDeep(DEFAULTINPUTJOB);
-    job.payload.id = {};
-    const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
-    it('should reject', function() {
-      const validatePromise = helper._validate(mockInputContext);
-      return expect(validatePromise).to.eventually
-        .be.rejectedWith(Error, 'missing/incorrect \'id\' String value of ObjectID in job payload');
-    });
-  });
-
-  context('when payload.id is not a String value of ObjectID', function() {
-    const job = _.cloneDeep(DEFAULTINPUTJOB);
-    job.payload.id = 'sdfsdf';
-    const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
-    it('should reject', function() {
-      const validatePromise = helper._validate(mockInputContext);
-      return expect(validatePromise).to.eventually
-        .be.rejectedWith(Error, 'missing/incorrect \'id\' String value of ObjectID in job payload');
+      return expect(validatePromise).to.be.rejected;
     });
   });
 });

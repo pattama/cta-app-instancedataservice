@@ -36,8 +36,8 @@ describe('BusinessLogics - Instance - Update - _validate', function() {
       quality: 'update',
     },
     payload: {
-      id: mockId.toString(),
-      hostname: 'foo.fr',
+      query: { id: mockId.toString() },
+      content: { hostname: 'foo.fr' },
     },
   };
   before(function() {
@@ -68,7 +68,7 @@ describe('BusinessLogics - Instance - Update - _validate', function() {
 
   context('when payload has an invalid argument', function() {
     const job = _.cloneDeep(DEFAULTINPUTJOB);
-    job.payload.hostname = {};
+    job.payload.content.hostname = {};
     const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
     it('should reject', function() {
       const validatePromise = helper._validate(mockInputContext);

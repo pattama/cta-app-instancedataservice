@@ -36,7 +36,7 @@ describe('BusinessLogics - Instance - Update - _process', function() {
         quality: 'update',
       },
       payload: {
-        id: mockId.toString(),
+        query: { id: mockId.toString() },
         content: {},
       },
     };
@@ -52,8 +52,8 @@ describe('BusinessLogics - Instance - Update - _process', function() {
         },
         payload: {
           type: 'instance',
-          id: DEFAULTINPUTJOB.payload.id,
-          content: _.omit(DEFAULTINPUTJOB.payload, ['id']),
+          query: DEFAULTINPUTJOB.payload.query,
+          content: _.omit(DEFAULTINPUTJOB.payload.content, ['id']),
         },
       };
       mockOutputContext = new Context(DEFAULTCEMENTHELPER, outputJOB);

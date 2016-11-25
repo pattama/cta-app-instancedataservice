@@ -42,7 +42,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
     let mockContext;
     before(function () {
       req.body = _.cloneDeep(INSTANCE);
-      req.params = {
+      req.query = {
         id: (new ObjectID()).toString(),
       };
       data = {
@@ -50,9 +50,11 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
           type: 'instance',
           quality: 'update',
         },
-        payload: req.body,
+        payload: {
+          query: req.query,
+          content: req.body,
+        },
       };
-      data.payload.id = req.params.id;
       mockContext = new EventEmitter();
       mockContext.publish = sinon.stub();
       sinon.stub(handler.cementHelper, 'createContext')
