@@ -62,5 +62,23 @@
     "co": "^4.6.0",
     "lodash": "^4.16.4"
   },
+  "dependencies": {
+    "request": "^2.74.0",
+    "bson": "^0.5.5",
+    "co": "^4.6.0",
+    "lodash": "^4.16.4",
+    "cta-brick": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-brick.git",
+    "cta-common": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-common.git",
+    "cta-dblayer": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-dblayer.git",
+    "cta-expresswrapper": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-expresswrapper.git",
+    "cta-flowcontrol": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-flowcontrol.git#aggregatedapp-require-fix",
+    "cta-healthcheck": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-healthcheck.git",
+    "cta-io": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-io.git#brick",
+    "cta-logger": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-logger.git",
+    "cta-messaging": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-messaging.git",
+    "cta-restapi": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-restapi.git#aggregatedapp-require-fix",
+    "cta-tool": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-tool.git",
+    "cta-tool-request": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-tool-request.git"
+  },
   "license": "Apache-2.0"
 }
