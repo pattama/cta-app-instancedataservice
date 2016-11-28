@@ -80,7 +80,8 @@ describe('DatabaseInterfaces - MongoDB - InsertOne - _validate', function() {
     });
   });
 
-  /*context('when payload.content.id is not a String', function() {
+  /*
+  context('when payload.content.id is not a String', function() {
     const job = _.cloneDeep(DEFAULTINPUTJOB);
     job.payload.content.id = {};
     const mockInputContext = new Context(DEFAULTCEMENTHELPER, job);
@@ -100,5 +101,6 @@ describe('DatabaseInterfaces - MongoDB - InsertOne - _validate', function() {
       return expect(validatePromise).to.eventually
         .be.rejectedWith(Error, 'missing/incorrect \'id\' String value of ObjectID in job payload');
     });
-  });*/
+  });
+  */
 });
