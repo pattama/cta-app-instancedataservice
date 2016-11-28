@@ -49,6 +49,7 @@
     "co": "^4.6.0",
     "lodash": "^4.16.4",
     "request": "^2.74.0",
+    "cta-brick": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-brick.git",
     "cta-brick-request": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-brick-request.git",
     "cta-common": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-common.git",
     "cta-dblayer": "git+ssh://git@git.sami.int.thomsonreuters.com:compass/cta-dblayer.git",
