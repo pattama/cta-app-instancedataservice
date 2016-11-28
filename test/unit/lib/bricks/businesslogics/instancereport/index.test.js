@@ -6,7 +6,6 @@ const Context = require('events').EventEmitter;
 const _ = require('lodash');
 const sinon = require('sinon');
 const nodepath = require('path');
-const ObjectID = require('bson').ObjectID;
 const Logger = require('cta-logger');
 const BrickPath = nodepath.join(appRootPath,
   '/lib/bricks/businesslogics/instancereport/index.js');
@@ -102,7 +101,6 @@ describe('BusinessLogics - Instancereport', function() {
       sinon.assert.calledWith(inputContext.emit, 'reject', brick.name, error);
       sinon.assert.calledWith(inputContext.emit, 'error', brick.name, error);
     }
-
   });
 
   it('_create', function() {
