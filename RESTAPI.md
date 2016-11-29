@@ -115,10 +115,21 @@ GET /instances?properties.os=windows 7
 
 **Request**
 
+*Update by id*
+
 ```ruby
-PATCH /instances/582b8ae883672f210c93c221
+PATCH /instances?id=582b8ae883672f210c93c221
 {
   "hostname" : "my.localhost",
+  "ip": "12.12.12.12"
+}
+```
+
+*Update by hostname*
+
+```ruby
+PATCH /instances?hostname=my.localhost
+{
   "ip": "12.12.12.12"
 }
 ```
