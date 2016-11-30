@@ -41,6 +41,19 @@ const data = {
     },
   },
 };
+
+const newhost = {
+  id: '123',
+  nature: {
+    type: 'instance',
+    quality: 'update',
+  },
+  payload: {
+    hostname: 'foo.com',
+    ip: '11.11.11.11',
+    properties: { os: 'windows' },
+  },
+};
 describe('BusinessLogics - Instancereport', function() {
   beforeEach(function() {
     inputContext = new Context();
@@ -71,8 +84,11 @@ describe('BusinessLogics - Instancereport', function() {
   it('process', function() {
     inputContext.data = data;
 
+    // inputContext.data = newhost;
+
     brick.process(inputContext);
     sinon.assert.calledWith(brick.cementHelper.createContext, _.omit(data, 'id'));
+    // sinon.assert.calledWith(brick.cementHelper.createContext, _.omit(newhost, 'id'));
     sinon.assert.called(outputContext.publish);
 
     outputContext.emit('done', 'someBrickName', 'someResponse');

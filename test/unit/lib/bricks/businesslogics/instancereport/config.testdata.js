@@ -33,7 +33,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'instance',
+            type: 'instances',
             // quality: 'create|update|delete',
           },
         },
