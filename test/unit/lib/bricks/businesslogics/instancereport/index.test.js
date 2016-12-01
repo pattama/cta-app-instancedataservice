@@ -28,21 +28,22 @@ const expect = chai.expect;
 const brick = new Brick(CementHelper, config);
 let inputContext;
 let outputContext;
-const data = {
-  id: '123',
-  nature: {
-    type: 'instance',
-    quality: 'update',
-  },
-  payload: {
-    query: { hostname: 'foo.com' },
-    content: {
-      ip: '11.11.11.11',
-    },
-  },
-};
+let data;
 describe('BusinessLogics - Instancereport', function() {
   beforeEach(function() {
+    data = {
+      id: '123',
+      nature: {
+        type: 'instance',
+        quality: 'update',
+      },
+      payload: {
+        query: { hostname: 'foo.com' },
+        content: {
+          ip: '11.11.11.11',
+        },
+      },
+    };
     inputContext = new Context();
     sinon.stub(inputContext, 'emit');
     outputContext = new Context();
@@ -68,7 +69,7 @@ describe('BusinessLogics - Instancereport', function() {
     return expect(brick.validate()).to.be.resolved;
   });
 
-  it('process', function() {
+  it('should process with right contract', function() {
     inputContext.data = data;
 
     brick.process(inputContext);
@@ -101,6 +102,14 @@ describe('BusinessLogics - Instancereport', function() {
       sinon.assert.calledWith(inputContext.emit, 'reject', brick.name, error);
       sinon.assert.calledWith(inputContext.emit, 'error', brick.name, error);
     }
+  });
+
+  it('should not process with wrong contract', function() {
+    inputContext.data = data;
+    inputContext.data.nature.quality = 'someQuality';
+    brick.process(inputContext);
+    sinon.assert.notCalled(brick.cementHelper.createContext);
+    sinon.assert.notCalled(outputContext.publish);
   });
 
   it('_create', function() {
