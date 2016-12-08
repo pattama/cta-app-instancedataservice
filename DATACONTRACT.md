@@ -3,8 +3,6 @@ Data contracts
 
 * [Inputs](#inputs)
     * [Instance update](#instance-update)
-* [Outputs](#outputs)
-    * [Message acknowledge](#message-acknowledge)
     
 # Inputs
 
@@ -65,38 +63,6 @@ For the above example, if there is no instance matching the hostname "localhost"
     "properties": {
         "os": "Windows 10 64bits",
         "env": "local"
-    }
-}
-````
-
-# Outputs
-
-## Message acknowledge
-
-**Contract**
-
-````
-{
-    "nature": {
-        "type": "message",
-        "quality": "acknowledge"
-      },
-    "payload": {
-        "id": String
-    }
-}
-````
-
-**Example**
-
-````
-{
-    "nature": {
-        "type": "message",
-        "quality": "acknowledge"
-      },
-    "payload": {
-        "id": "U8i96mL"
     }
 }
 ````
