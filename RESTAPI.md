@@ -103,8 +103,9 @@ GET /instances?properties.os=windows 7
 ```
 
 #### Update an Instance 
+
+####Update by id
 **Request**
-*Update by id*
 ```ruby
 PATCH /instances?id=582b8ae883672f210c93c221
 {
@@ -112,9 +113,8 @@ PATCH /instances?id=582b8ae883672f210c93c221
   "ip": "12.12.12.12"
 }
 ```
-
-*Update by hostname*
-
+####Update by hostname
+**Request**
 ```ruby
 PATCH /instances?hostname=my.localhost
 {
@@ -140,7 +140,6 @@ PATCH /instances?hostname=my.localhost
 ```
 
 #### Delete an Instance 
-
 **Request**
 ```ruby
 DELETE /instances/582b8ae883672f210c93c221
