@@ -3,16 +3,12 @@
 
 ## Instance Data Contracts
 
-* [Inputs](#inputs)
-    * [Instance update](#instance-update)
-    
-# Inputs
+### Input
+* [Instance update](#instance-update)
 
-## Instance update
-
-**Contract**
-
-````
+#### Instance update:
+Contract:
+```ruby
 {
     "nature": {
         "type": "instances",
@@ -27,11 +23,9 @@
         }        
     }
 }
-````
-
-**Example**
-
-````
+```
+Example:
+```ruby
 {
     "nature": {
         "type": "instances",
@@ -50,7 +44,7 @@
         }        
     }
 }
-````
+```
 
 **Notes**
 
@@ -58,7 +52,7 @@ If the instance to update doesn't exist, it will attempt to create it with full 
 
 For the above example, if there is no instance matching the hostname "localhost", it will attempt to create a new instance:
 
-````
+```ruby
 {
     "hostname": "localhost",
     "ip": "127.0.0.1",
@@ -67,4 +61,4 @@ For the above example, if there is no instance matching the hostname "localhost"
         "env": "local"
     }
 }
-````
+```
