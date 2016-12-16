@@ -1,19 +1,17 @@
-Rest API
-========
+# Instance DataService for Compass Test Automation
+[Readme](README.md) | [Rest API](RESTAPI.md) | [DataContract](DATACONTRACT.md) | [Document](DOCUMENTATION.md) |[Configuration](CONFIGURATION.md)| [Sequence Diagrams](https://www.lucidchart.com/documents/edit/9980627b-2d6c-4a15-b610-235575b8801e)
 
-# Summary
 
-**Instances**
+## Instance Application Program Interface
 
+### Rest API
 * [Create a new Instance](#create-a-new-instance)
 * [Find Instances](#find-instances)
 * [Update an Instance](#update-an-instance)
 * [Delete an Instance](#delete-an-instance)
 
-# Create a new Instance 
-
+#### Create a new Instance 
 **Request**
-
 ```ruby
 POST /instances
 {
@@ -28,7 +26,6 @@ POST /instances
 ```
 
 **Response**
-
 ```ruby
 201
 {
@@ -45,18 +42,15 @@ POST /instances
 }
 ```
 
-# Find Instances
+#### Find Instances
 
-## Find by hostname
-
+#### Find by hostname
 **Request**
-
 ```ruby
 GET /instances?hostname=localhost
 ```
 
 **Response**
-
 ```ruby
 200
 {
@@ -79,16 +73,13 @@ GET /instances?hostname=localhost
 }
 ```
 
-## Find by properties
-
+#### Find by properties
 **Request**
-
 ```ruby
 GET /instances?properties.os=windows 7
 ```
 
 **Response**
-
 ```ruby
 200
 {
@@ -111,12 +102,9 @@ GET /instances?properties.os=windows 7
 }
 ```
 
-# Update an Instance 
-
+#### Update an Instance 
 **Request**
-
 *Update by id*
-
 ```ruby
 PATCH /instances?id=582b8ae883672f210c93c221
 {
@@ -135,7 +123,6 @@ PATCH /instances?hostname=my.localhost
 ```
 
 **Response**
-
 ```ruby
 200
 {
@@ -152,16 +139,14 @@ PATCH /instances?hostname=my.localhost
 }
 ```
 
-# Delete an Instance 
+#### Delete an Instance 
 
 **Request**
-
 ```ruby
 DELETE /instances/582b8ae883672f210c93c221
 ```
 
 **Response**
-
 ```ruby
 200
 {
