@@ -1,13 +1,16 @@
-Instance Data Service
-===================== 
+# Instances Data Service for Compass Test Automation
+[![build status](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/build.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
+[![coverage report](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/coverage.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
 
-Application for Compass Test Automation
-
-# Summary
+## Summary
 * [Rest API](RESTAPI.md)
-* [Data Model](DATAMODEL.md)
-* [Data Contract](DATACONTRACT.md)
-* [Documentation](DOCUMENTATION.md)
+* [DataContract](DATACONTRACT.md)
+* [Document](DOCUMENTATION.md)
+* [Sequence Diagrams](https://www.lucidchart.com/documents/edit/9980627b-2d6c-4a15-b610-235575b8801e)
+* [Configuration](CONFIGURATION.md)
+
+
+
 
 # Draft
 * [RestAPI service for JobManager](https://docs.google.com/document/d/1h-WdRTUlSvC-o7Pwt-rVwFRx2hbZwhmIXMQKTDtV0W0/edit)
