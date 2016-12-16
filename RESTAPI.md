@@ -44,7 +44,7 @@ POST /instances
 
 #### Find Instances
 
-#### Find by hostname
+##### Find by hostname
 **Request**
 ```ruby
 GET /instances?hostname=localhost
@@ -73,7 +73,7 @@ GET /instances?hostname=localhost
 }
 ```
 
-#### Find by properties
+##### Find by properties
 **Request**
 ```ruby
 GET /instances?properties.os=windows 7
@@ -104,7 +104,7 @@ GET /instances?properties.os=windows 7
 
 #### Update an Instance 
 
-####Update by id
+##### Update by id
 **Request**
 ```ruby
 PATCH /instances?id=582b8ae883672f210c93c221
@@ -113,7 +113,7 @@ PATCH /instances?id=582b8ae883672f210c93c221
   "ip": "12.12.12.12"
 }
 ```
-####Update by hostname
+##### Update by hostname
 **Request**
 ```ruby
 PATCH /instances?hostname=my.localhost
