@@ -5,7 +5,7 @@
 
 ### Input
 * [Instance update](#instance-update)
-* [Instance Execution State update](#instance-execution-state-update)
+* [Instance update state by Execution](#instance-execution-state-update)
 
 #### Instance update:
 Contract:
@@ -64,6 +64,6 @@ For the above example, if there is no instance matching the hostname "localhost"
 }
 ```
 
-#### Instance Execution State update:
+#### Instance update state by Execution:
 
 See you soon :)
