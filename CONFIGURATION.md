@@ -4,7 +4,7 @@
 
 ## Instanse Configuration
  * [Instance business logic](#instance-business-logic)
- * [Instance report business logic](#instance-report-business-logic)
+ * [Instance report by agent business logic](#instance-report-business-logic)
  * [DB Interface](#db-interface-mongodb)
  * [DB Layer](#db-layer-mongodb)
  * [CTA IO Receiver](#receiver)
