@@ -2,7 +2,7 @@
 
 const config = {
   name: 'base-businesslogic',
-  module: './bricks/businesslogics/instance/index.js',
+  module: './bricks/businesslogics/instances/index.js',
   properties: {
     instanceApiUrl: 'http://localhost:3010/',
     schedulerApiUrl: 'http://localhost:3011/',

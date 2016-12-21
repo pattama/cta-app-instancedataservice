@@ -36,7 +36,7 @@ describe('DatabaseInterfaces - MongoDB - InsertOne - _validate', function() {
       quality: 'insertOne',
     },
     payload: {
-      type: 'instance',
+      type: 'instances',
       content: {
         id: mockId.toString(),
       },

@@ -43,7 +43,7 @@ describe('Utils - RESTAPI - Handlers - Instances - delete', function () {
       };
       data = {
         nature: {
-          type: 'instance',
+          type: 'instances',
           quality: 'delete',
         },
         payload: {

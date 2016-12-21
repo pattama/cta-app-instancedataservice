@@ -29,7 +29,7 @@ describe('BusinessLogics - Base Helper - _validate', function() {
   let helper;
   const DEFAULTINPUTJOB = {
     nature: {
-      type: 'instance',
+      type: 'instances',
       quality: Helper.name.toLowerCase(),
     },
     payload: {},

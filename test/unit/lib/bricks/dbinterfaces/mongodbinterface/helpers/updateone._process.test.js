@@ -30,7 +30,7 @@ describe('DatabaseInterfaces - MongoDB - UpdateOne - _process', function() {
         quality: 'updateOne',
       },
       payload: {
-        type: 'instance',
+        type: 'instances',
         query: { hostname: 'foo.com' },
         content: {
           ip: '11.11.11.11',

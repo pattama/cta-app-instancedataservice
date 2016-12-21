@@ -34,7 +34,7 @@ describe('DatabaseInterfaces - MongoDB - Find - _validate', function() {
       quality: 'findById',
     },
     payload: {
-      type: 'instance',
+      type: 'instances',
       filter: {
         limit: 10,
         offset: 0,

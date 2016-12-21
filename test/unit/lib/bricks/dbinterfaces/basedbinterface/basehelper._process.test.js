@@ -30,7 +30,7 @@ describe('DatabaseInterfaces - Base Helper - _process', function() {
   context('when everything ok', function() {
     const inputJOB = {
       nature: {
-        type: 'instance',
+        type: 'instances',
         quality: Helper.name.toLowerCase(),
       },
       payload: {},
