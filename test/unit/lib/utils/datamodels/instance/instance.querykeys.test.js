@@ -6,7 +6,7 @@ const assert = chai.assert;
 const nodepath = require('path');
 
 const Model = require(nodepath.join(appRootPath,
-  '/lib/utils/datamodels', 'instance.js'));
+  '/lib/utils/datamodels', 'instances.js'));
 
 describe('Data Model - Instance - QueryKeys', function() {
   context('when everything ok', function() {

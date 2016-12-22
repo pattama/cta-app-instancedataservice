@@ -47,7 +47,7 @@ describe('Utils - RESTAPI - Handlers - Instances - update', function() {
       };
       data = {
         nature: {
-          type: 'instance',
+          type: 'instances',
           quality: 'update',
         },
         payload: {

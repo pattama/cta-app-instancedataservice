@@ -34,7 +34,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'instance',
+            type: 'instances',
           },
         },
       ],
@@ -56,7 +56,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'instance',
+            type: 'instances',
           },
         },
       ],
@@ -66,7 +66,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'message',
+            type: 'messages',
             quality: 'acknowledge',
           },
         },
@@ -79,7 +79,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'instance',
+            type: 'instances',
             // quality: 'create|update|delete',
           },
         },
@@ -177,7 +177,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'instance',
+            type: 'instances',
             //quality: 'create|update|delete',
           },
         },
@@ -190,7 +190,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'message',
+            type: 'messages',
             quality: 'acknowledge',
           },
         },
@@ -249,7 +249,7 @@ module.exports = {
       data: [
         {
           nature: {
-            type: 'instance',
+            type: 'instances',
           },
         },
       ],

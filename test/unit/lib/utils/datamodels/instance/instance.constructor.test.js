@@ -6,7 +6,7 @@ const expect = chai.expect;
 const nodepath = require('path');
 
 const Model = require(nodepath.join(appRootPath,
-  '/lib/utils/datamodels', 'instance.js'));
+  '/lib/utils/datamodels', 'instances.js'));
 const data = require('./instance.data.testdata.js');
 
 describe('Data Model - Instance', function() {

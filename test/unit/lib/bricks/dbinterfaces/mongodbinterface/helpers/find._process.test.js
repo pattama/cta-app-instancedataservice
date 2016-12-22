@@ -31,7 +31,7 @@ describe('DatabaseInterfaces - MongoDB - Find - _process', function() {
       quality: 'find',
     },
     payload: {
-      type: 'instance',
+      type: 'instances',
       filter: {
         limit: 10,
         offset: 0,

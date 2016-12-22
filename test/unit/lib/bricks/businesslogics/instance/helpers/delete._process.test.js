@@ -7,7 +7,7 @@ const nodepath = require('path');
 const Logger = require('cta-logger');
 const Context = require('cta-flowcontrol').Context;
 const Helper = require(nodepath.join(appRootPath,
-  '/lib/bricks/businesslogics/instance/helpers/', 'delete.js'));
+  '/lib/bricks/businesslogics/instances/helpers/', 'delete.js'));
 
 const DEFAULTCONFIG = require('../index.config.testdata.js');
 const DEFAULTLOGGER = new Logger(null, null, DEFAULTCONFIG.name);
@@ -30,7 +30,7 @@ describe('BusinessLogics - Instance - Delete - _process', function() {
   context('when everything ok', function() {
     const inputJOB = {
       nature: {
-        type: 'instance',
+        type: 'instances',
         quality: Helper.name.toLowerCase(),
       },
       payload: {},
@@ -47,7 +47,7 @@ describe('BusinessLogics - Instance - Delete - _process', function() {
           quality: 'deleteOne',
         },
         payload: {
-          type: 'instance',
+          type: 'instances',
           id: inputJOB.payload.id,
         },
       };

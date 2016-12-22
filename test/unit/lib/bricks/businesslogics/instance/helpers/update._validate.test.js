@@ -12,7 +12,7 @@ const _ = require('lodash');
 const Logger = require('cta-logger');
 const Context = require('cta-flowcontrol').Context;
 const Helper = require(nodepath.join(appRootPath,
-  '/lib/bricks/businesslogics/instance/helpers', 'update.js'));
+  '/lib/bricks/businesslogics/instances/helpers', 'update.js'));
 
 const DEFAULTCONFIG = require('../index.config.testdata.js');
 const DEFAULTLOGGER = new Logger(null, null, DEFAULTCONFIG.name);
@@ -32,7 +32,7 @@ describe('BusinessLogics - Instance - Update - _validate', function() {
   const mockId = new ObjectID();
   const DEFAULTINPUTJOB = {
     nature: {
-      type: 'instance',
+      type: 'instances',
       quality: 'update',
     },
     payload: {
