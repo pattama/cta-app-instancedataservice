@@ -15,7 +15,7 @@
 ### General Overview
 
 #### Overview of Instances Data Service
-Please tell me a little about Job Manager Data Service
+Please tell me a little about Instances Data Service
 
 #### What are the features that Instances Data Service provide?
 Please check the feature guide for a list of all features provided by CTA.
