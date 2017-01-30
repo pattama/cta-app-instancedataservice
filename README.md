@@ -37,10 +37,10 @@ You can follow [these steps](https://git.sami.int.thomsonreuters.com/compass/cta
 #### Where can I find information about Instances Data Service component?
 Our service is composed of different components working together to schedule, run, collect tests results and more. You can find additional information for more understand in Instances Data Service.
 We also cover in detail :
-* The [Rest API](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/restapi) is composed of multiple REST service to perform actions on CTA.
-* A [DataContract](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/datacontract) is a formal agreement between a bricks.
-* A [Configuration](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/configuration)is the agreement of functional units according to their nature.
-* The [Document](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/document) associated with a software project and the system being.
+* The [Rest API](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/wikis/restapi) is composed of multiple REST service to perform actions on CTA.
+* A [DataContract](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/wikis/datacontract) is a formal agreement between a bricks.
+* A [Configuration](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/wikis/configuration)is the agreement of functional units according to their nature.
+* The [Document](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/wikis/document) associated with a software project and the system being.
 * A [Sequence Diagrams](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/sequencediagram) is an interaction diagram that shows how objects operate with one another and in what order.
 
 
