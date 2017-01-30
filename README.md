@@ -5,79 +5,46 @@
 * General Overview
   * [Overview of Instances Data Service ](#Overview of Instances Data Service)
   * [What are the features that Instances Data Service provide?](#What are the features that Instances Data Service provide?)
-  * [What is technology stack for Job Manager Data Service?](#What is technology stack for Job Manager Data Service?)
+  * [What is technology stack for Instances Data Service?](#What is technology stack for Instances Data Service?)
 * Develop Guide
-  * [What is Job Manager Data Service's configuration and how can I find it?](#What is Job Manager Data Service's configuration and how can I find it?)
+  * [What is Instances Data Service's configuration and how can I find it?](#What is Instances Data Service's configuration and how can I find it?)
   * [How I can contribute to my code?](#How I can contribute to my code?)
-  * [Where can I find information about Job Manager Data Service component?](#Where can I find information about Job Manager Data Service component?)
+  * [Where can I find information about Instances Data Service component?](#Where can I find information about Instances Data Service component?)
 
 
 
-## General Overview
+### General Overview
 
-### Overview of Job Manager Data Service
+#### Overview of Instances Data Service
 Please tell me a little about Job Manager Data Service
 
-### What are the features that Instances Data Service provide?
+#### What are the features that Instances Data Service provide?
 Please check the feature guide for a list of all features provided by CTA.
 
-### What is technology stack for Job Manager Data Service?
+#### What is technology stack for Instances Data Service?
  1. Front End skills required include `HTML`, `CSS`, `JavaScript`, `JSON`. 
  2. Back End development using `Node.js`, `Express,` and `MongoDB`. It also important concept of source control using `Git`.
   
 
-## Develop Guide
+### Development Guide
 
-### What is Job Manager Data Service's configuration and how can I find it?
-A [Configuration](https://git.sami.int.thomsonreuters.com/compass/cta-app-jobmanagerdataservice/wikis/configuration) is the agreement of functional units according to their nature.
+#### What is Instances Data Service's configuration and how can I find it?
+A [Configuration](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/configuration) is the agreement of functional units according to their nature.
 
-### How I can contribute to my code?
+#### How I can contribute to my code?
 You can follow [these steps](https://git.sami.int.thomsonreuters.com/compass/cta/blob/master/contributing.md) to contribute.
 
-### Where can I find information about Job Manager Data Service component?
-You can go to [wiki knowledgebase](https://git.sami.int.thomsonreuters.com/compass/cta-app-jobmanagerdataservice/wikis/home) for additional information on Job Manager Data Service.
-
-
+#### Where can I find information about Instances Data Service component?
+Our service is composed of different components working together to schedule, run, collect tests results and more. You can find additional information for more understand in Instances Data Service.
+We also cover in detail :
+* The [Rest API](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/rest api) is composed of multiple REST service to perform actions on CTA.
+* A [DataContract](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/datacontract) is a formal agreement between a bricks.
+* A [Configuration](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/configuration)is the agreement of functional units according to their nature.
+* The [Document](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/document) associated with a software project and the system being.
+* A [Sequence Diagrams](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancesdataservice/wikis/sequence diagram) is an interaction diagram that shows how objects operate with one another and in what order.
 
 
 ------
 
 This code is running live at [CTA-OSS](https://www.). We also have [CTA Central Document](https://git.sami.int.thomsonreuters.com/compass/cta) 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Summary
-* [Rest API](RESTAPI.md)
-* [DataContract](DATACONTRACT.md)
-* [DataModel](DATAMODEL.md)
-* [Document](DOCUMENTATION.md)
-* [Sequence Diagrams](https://www.lucidchart.com/documents/edit/9980627b-2d6c-4a15-b610-235575b8801e)
-* [Configuration](CONFIGURATION.md)
-
-
-
-
-
-
-
-
-
-# Draft
-* How to develop:
-..* check code coverage by run `node_modules\.bin\istanbul cover .\node_modules\mocha\bin\_mocha -- -u exports -R spec`
