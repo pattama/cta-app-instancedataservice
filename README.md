@@ -1,17 +1,16 @@
 # Welcome to Instances Data Service for Compass Test Automation
-[![build status](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/build.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
-[![coverage report](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/coverage.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
+[![build status](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/build.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)[![coverage report](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/coverage.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
 ------
 * General Overview
   * [Overview of Instances Data Service ](#Overview of Instances Data Service)
   * [What are the features that Instances Data Service provide?](#What are the features that Instances Data Service provide?)
   * [What is technology stack for Instances Data Service?](#What is technology stack for Instances Data Service?)
-* Develop Guide
+* Development Guide
   * [What is Instances Data Service's configuration and how can I find it?](#What is Instances Data Service's configuration and how can I find it?)
   * [How I can contribute to my code?](#How I can contribute to my code?)
   * [Where can I find information about Instances Data Service component?](#Where can I find information about Instances Data Service component?)
 
-
+------
 
 ### General Overview
 
@@ -25,6 +24,7 @@ Please check the feature guide for a list of all features provided by CTA.
  1. Front End skills required include `HTML`, `CSS`, `JavaScript`, `JSON`. 
  2. Back End development using `Node.js`, `Express,` and `MongoDB`. It also important concept of source control using `Git`.
   
+------
 
 ### Development Guide
 
