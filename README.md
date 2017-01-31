@@ -6,7 +6,7 @@
   * [What are the features that Instances Data Service provide?](#what-are-the-features-that-instances-data-service-provide)
   * [What is technology stack for Instances Data Service?](#what-is-technology-stack-for-instances-data-service)
 * Development Guide
-  * [What is Instances Data Service's configuration and how can I find it?](#what-is-instances-data-service's-configuration-and-how-can-i-find-it)
+  * [What is Instances Data Service's configuration and how can I find it?](#what-is-instances-data-services-configuration-and-how-can-i-find-it)
   * [How I can contribute to my code?](#how-i-can-contribute-to-my-code)
   * [Where can I find information about Instances Data Service component?](#where-can-i-find-information-about-instances-data-service-component)
 
