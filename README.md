@@ -2,13 +2,13 @@
 [![build status](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/build.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)[![coverage report](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/coverage.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
 ------
 * General Overview
-  * [Overview of Instances Data Service ](#overview-of-instances-data-service)
-  * [What are the features that Instances Data Service provide?](#what-are-the-features-that-instances-data-service-provide)
-  * [What is technology stack for Instances Data Service?](#what-is-technology-stack-for-instances-data-service)
+  * [Overview of Instances Data Service ](#Overview of Instances Data Service)
+  * [What are the features that Instances Data Service provide?](#What are the features that Instances Data Service provide?)
+  * [What is technology stack for Instances Data Service?](#What is technology stack for Instances Data Service?)
 * Development Guide
-  * [What is Instances Data Service's configuration and how can I find it?](#what-is-instances-data-services-configuration-and-how-can-i-find-it)
-  * [How I can contribute to my code?](#how-i-can-contribute-to-my-code)
-  * [Where can I find information about Instances Data Service component?](#where-can-i-find-information-about-instances-data-service-component)
+  * [What is Instances Data Service's configuration and how can I find it?](#What is Instances Data Service's configuration and how can I find it?)
+  * [How I can contribute to my code?](#How I can contribute to my code?)
+  * [Where can I find information about Instances Data Service component?](#Where can I find information about Instances Data Service component?)
 
 ------
 
@@ -47,4 +47,3 @@ We also cover in detail :
 ------
 
 This code is running live at [CTA-OSS](https://www.). We also have [CTA Central Document](https://git.sami.int.thomsonreuters.com/compass/cta) 
-
