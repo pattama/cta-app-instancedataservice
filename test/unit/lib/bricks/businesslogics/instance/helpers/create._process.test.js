@@ -9,10 +9,10 @@ const ObjectID = require('bson').ObjectID;
 const Logger = require('cta-logger');
 const Context = require('cta-flowcontrol').Context;
 const pathToHelper = nodepath.join(appRootPath,
-  '/lib/bricks/businesslogics/instance/helpers/', 'create.js');
+  '/lib/bricks/businesslogics/instances/helpers/', 'create.js');
 let Helper = require(pathToHelper);
 const pathToInstance = nodepath.join(appRootPath,
-  '/lib/utils/datamodels', 'instance.js');
+  '/lib/utils/datamodels', 'instances.js');
 const Instance = require(pathToInstance);
 
 const DEFAULTCONFIG = require('../index.config.testdata.js');
@@ -28,9 +28,9 @@ const DEFAULTCEMENTHELPER = {
   createContext: function() {},
 };
 const DEFAULTAPIURLS = {
-  instanceApiUrl: 'http://localhost:3010/',
-  schedulerApiUrl: 'http://localhost:3011/',
-  jobManagerApiUrl: 'http://localhost:3012/',
+  instanceApiUrl: 'http://localhost:3010/ids/',
+  schedulerApiUrl: 'http://localhost:3011/sch',
+  jobManagerApiUrl: 'http://localhost:3012/jms/',
 };
 
 describe('BusinessLogics - Instance - Create - _process', function() {
@@ -38,7 +38,7 @@ describe('BusinessLogics - Instance - Create - _process', function() {
   context('when everything ok', function() {
     const inputJOB = {
       nature: {
-        type: 'instance',
+        type: 'instances',
         quality: Helper.name.toLowerCase(),
       },
       payload: {},
@@ -68,7 +68,7 @@ describe('BusinessLogics - Instance - Create - _process', function() {
           quality: 'insertOne',
         },
         payload: {
-          type: 'instance',
+          type: 'instances',
           content: mockInstance,
         },
       };

@@ -34,7 +34,7 @@ describe('BusinessLogics - Instancereport', function() {
     data = {
       id: '123',
       nature: {
-        type: 'instance',
+        type: 'instances',
         quality: 'update',
       },
       payload: {
@@ -117,7 +117,7 @@ describe('BusinessLogics - Instancereport', function() {
     brick._create(inputContext);
     const outData = {
       nature: {
-        type: 'instance',
+        type: 'instances',
         quality: 'create',
       },
       payload: {
@@ -156,7 +156,7 @@ describe('BusinessLogics - Instancereport', function() {
     brick._ack(data.id);
     const outData = {
       nature: {
-        type: 'message',
+        type: 'messages',
         quality: 'acknowledge',
       },
       payload: {

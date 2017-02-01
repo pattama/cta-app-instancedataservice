@@ -11,7 +11,7 @@ const _ = require('lodash');
 const Logger = require('cta-logger');
 const Context = require('cta-flowcontrol').Context;
 const Helper = require(nodepath.join(appRootPath,
-  '/lib/bricks/businesslogics/instance/helpers', 'create.js'));
+  '/lib/bricks/businesslogics/instances/helpers', 'create.js'));
 
 const DEFAULTCONFIG = require('../index.config.testdata.js');
 const DEFAULTLOGGER = new Logger(null, null, DEFAULTCONFIG.name);
@@ -26,9 +26,9 @@ const DEFAULTCEMENTHELPER = {
   createContext: function() {},
 };
 const DEFAULTAPIURLS = {
-  instanceApiUrl: 'http://localhost:3010/',
-  schedulerApiUrl: 'http://localhost:3011/',
-  jobManagerApiUrl: 'http://localhost:3012/',
+  instanceApiUrl: 'http://localhost:3010/ids/',
+  schedulerApiUrl: 'http://localhost:3011/sch',
+  jobManagerApiUrl: 'http://localhost:3012/jms/',
 };
 const SAMPLE = require('./create.sample.testdata.js');
 
@@ -36,7 +36,7 @@ describe('BusinessLogics - Instance - Create - _validate', function() {
   let helper;
   const DEFAULTINPUTJOB = {
     nature: {
-      type: 'instance',
+      type: 'instances',
       quality: Helper.name.toLowerCase(),
     },
     payload: SAMPLE,
