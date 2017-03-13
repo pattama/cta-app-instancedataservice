@@ -5,6 +5,8 @@
   * [Overview of Instances Data Service ](#Overview of Instances Data Service)
   * [What are the features that Instances Data Service provide?](#What are the features that Instances Data Service provide?)
   * [What is technology stack for Instances Data Service?](#What is technology stack for Instances Data Service?)
+* Getting Started
+  * Please visit  [IDS Wiki](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/wikis/home) to see the step.
 * Development Guide
   * [What is Instances Data Service's configuration and how can I find it?](#What is Instances Data Service's configuration and how can I find it?)
   * [How I can contribute to my code?](#How I can contribute to my code?)
@@ -15,10 +17,12 @@
 ### General Overview
 
 #### Overview of Instances Data Service
-Please tell me a little about Instances Data Service
+Instances Data Service (IDS) provides the service to register the instance which run the cta-client to CTA system. When the instance is registered, CTA system will assign the matched execution test to the cta-client. Any CTA’s services need IDS to check the information then IDS will provides the instance’s status (available or being executing the test) and the test script result base on the test script logics.
+
 
 #### What are the features that Instances Data Service provide?
-Please check the feature guide for a list of all features provided by CTA.
+Please check [IDS Wiki](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/wikis/home) for the list of all features provides by CTA.
+
 
 #### What is technology stack for Instances Data Service?
  1. Front End skills required include `HTML`, `CSS`, `JavaScript`, `JSON`. 
