@@ -1,0 +1,17 @@
+version: '2'
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "15672:15672"
+  mongodb:
+    image: "mongo"
+  ids:
+    build: .
+    image: cta-oss/cta-app-instancedataservice:compose
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - rabbitmq
+      - mongodb
+
