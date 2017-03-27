@@ -5,8 +5,8 @@
   * [Overview](#overview)
   * [Features](#features)
 * Getting Started
-  * [Technology Stack](#technology-stack) 
-  * [Install](#install)
+  * [Prerequisites](prerequisites) 
+  * [Installation & Startup](#installation-&-startup)
 * Development Guide
   * [Contributing](#contributing)
   * [More Information](#more-information)
@@ -17,7 +17,7 @@
 ### Overview
 Instances Data Service (IDS) provides the service to register the instance which run the cta-client to CTA system. When the instance is registered, CTA system will assign the matched execution test to the cta-client. Any CTA’s services need IDS to check the information then IDS will provides the instance’s status (available or being executing the test) and the test script result base on the test script logics.
 
-### Features that Instances Data Service provide?
+### Features
  * Instance Management 
  * Create a new Instance
  * Destroy an Instance
@@ -27,11 +27,11 @@ You can check more [feature guide](https://git.sami.int.thomsonreuters.com/compa
 ------
 
 ## Getting Started
-### Technology Stack for Instances Data Service
+### Prerequisites
  1. Front End skills required include `HTML`, `CSS`, `JavaScript`, `JSON`. 
  2. Back End development using `Node.js`, `Express,` and `MongoDB`. It also important concept of source control using `Git`.
 
-### Install
+### Installation & Startup
 The easiest way to get started is to clone the repository:
 ```ruby
 git clone git@git.sami.int.thomsonreuters.com:compass/cta-app-instancedataservice.git
@@ -41,6 +41,7 @@ Then install NPM dependencies:
 npm install
 ```
 To build, be sure you have [node](https://nodejs.org/en/) installed.
+To start the application, browse to the project directory and type: $ npm run into the terminal window. Point a browser to localhost:3000 and you're up and running!
   
 ------
 
