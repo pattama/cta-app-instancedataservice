@@ -52,7 +52,7 @@ You can follow [these steps](https://github.com/thomsonreuters/cta/blob/master/c
 
 ### More Information
 Our service is composed of different components working together to schedule, run, collect tests results and more. You can find additional information for more understand in Instances Data Service.
-We also cover in detail :
+We also cover in detail:
 * The Rest API is composed of multiple REST service to perform actions on CTA.
 * A DataContract is a formal agreement between a bricks.
 * A Configuration is the agreement of functional units according to their nature.
