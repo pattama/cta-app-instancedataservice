@@ -1,5 +1,8 @@
 # cta-app-instancedataservice
-[![build status](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/build.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)[![coverage report](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/badges/master/coverage.svg)](https://git.sami.int.thomsonreuters.com/compass/cta-app-instancedataservice/commits/master)
+[![Build Status](https://travis-ci.org/thomsonreuters/cta-app-instancedataservice.svg?branch=master)](https://travis-ci.org/thomsonreuters/cta-app-instancedataservice)
+[![Coverage Status](https://coveralls.io/repos/github/thomsonreuters/cta-app-instancedataservice/badge.svg?branch=master)](https://coveralls.io/github/thomsonreuters/cta-app-instancedataservice?branch=master)
+[![codecov](https://codecov.io/gh/thomsonreuters/cta-app-instancedataservice/branch/master/graph/badge.svg)](https://codecov.io/gh/thomsonreuters/cta-app-instancedataservice)
+
 
 **Instance Data Service Application (IDS)** for Compass Test Automation, implementing CTA-OSS Framework
 
